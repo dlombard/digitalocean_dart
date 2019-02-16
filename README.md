@@ -7,7 +7,7 @@ A Dart SDK for the DigitalOcean Api v2
 
 ```yaml
 dependencies:
-  do_dart: ^0.0.2 #latest version
+  do_dart: ^0.0.1 #latest version
 ```
 
 ## Easy to use
