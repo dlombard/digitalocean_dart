@@ -1,8 +1,8 @@
 name: do_dart
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+author: Davenson Lombard <me@dlombard.net>
+homepage: https://github.com/dlombard/do_dart
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
