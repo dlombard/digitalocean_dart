@@ -1,8 +1,8 @@
 name: do_dart
-description: A new Flutter package project.
-version: 0.0.1
+description: do_dart is an implementation of the digitalocean api which can be used on mobile, web or server
+version: 0.1.0
 author: Davenson Lombard <me@dlombard.net>
-homepage: https://github.com/dlombard/do_dart
+homepage: https://github.com/dlombard/digitalocean_dart
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
