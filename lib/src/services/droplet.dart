@@ -116,13 +116,13 @@ class DropletService extends DOService {
   ///Deletes a droplet
   Future<void> delete(int dropletId) async {
     String path = "$basePath/$dropletId";
-    client.execute('DELETE', path);
+    await client.execute('DELETE', path);
   }
 
   /// Deletes droplets by tag
   Future<void> deleteByTag(String tagName) async {
     String path = "$basePath?tag_name=$tagName";
-    client.execute('DELETE', path);
+    await client.execute('DELETE', path);
   }
 
   /// Lists Neighbors for a Droplet

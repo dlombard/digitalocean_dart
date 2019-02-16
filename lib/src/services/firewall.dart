@@ -45,7 +45,7 @@ class FirewallService extends DOService {
   /// Deletes a firewall
   Future<void> delete(String firewallId) async {
     String path = "$basePath/$firewallId";
-    client.execute('DELETE', path);
+    await client.execute('DELETE', path);
   }
 
   /// Add droplet under firewall
