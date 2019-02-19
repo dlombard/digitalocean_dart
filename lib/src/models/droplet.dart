@@ -20,8 +20,8 @@ class Droplet {
   bool locked;
   String created_at;
   String status;
-  List<String> backup_ids = [];
-  List<String> snapshot_ids = [];
+  List<int> backup_ids = [];
+  List<int> snapshot_ids = [];
   List<String> features = [];
   Region region;
   Image image;

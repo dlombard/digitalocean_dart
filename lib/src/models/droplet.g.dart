@@ -16,8 +16,8 @@ Droplet _$DropletFromJson(Map<String, dynamic> json) {
       json['locked'] as bool,
       json['created_at'] as String,
       json['status'] as String,
-      (json['backup_ids'] as List)?.map((e) => e as String)?.toList(),
-      (json['snapshot_ids'] as List)?.map((e) => e as String)?.toList(),
+      (json['backup_ids'] as List)?.map((e) => e as int)?.toList(),
+      (json['snapshot_ids'] as List)?.map((e) => e as int)?.toList(),
       (json['features'] as List)?.map((e) => e as String)?.toList(),
       json['region'] == null
           ? null
