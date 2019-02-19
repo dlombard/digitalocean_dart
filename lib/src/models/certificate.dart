@@ -8,7 +8,7 @@ part 'certificate.g.dart';
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
 @JsonSerializable()
-class Certificate{
+class Certificate {
   /// A unique ID that can be used to identify and reference a certificate.
   String id;
 
@@ -25,7 +25,7 @@ class Certificate{
   String created_at;
 
   /// An array of fully qualified domain names (FQDNs) for which the certificate was issued.
-  List<String>dns_names=[];
+  List<String> dns_names = [];
 
   /// A string representing the current state of the certificate. It may be "pending", "verified", or "error".
   String state;
@@ -33,8 +33,10 @@ class Certificate{
   /// A string representing the type of the certificate. The value will be "custom" for a user-uploaded certificate or "lets_encrypt" for one automatically generated with Let's Encrypt.
   String type;
 
-  Certificate(this.id, this.name, this.not_after, this.sha1_fingerprint, this.created_at, this.dns_names, this.state, this.type);
+  Certificate(this.id, this.name, this.not_after, this.sha1_fingerprint,
+      this.created_at, this.dns_names, this.state, this.type);
 
-  factory Certificate.fromJson(Map<String, dynamic> json) => _$CertificateFromJson(json);
+  factory Certificate.fromJson(Map<String, dynamic> json) =>
+      _$CertificateFromJson(json);
   Map<String, dynamic> toJson() => _$CertificateToJson(this);
 }

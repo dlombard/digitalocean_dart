@@ -9,21 +9,21 @@ part 'project_resource.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class ProjectResource {
-/// The uniform resource name of the resource.
-String urn;
+  /// The uniform resource name of the resource.
+  String urn;
 
-/// A time value given in ISO8601 combined date and time format that represents when the project was created.
-String assigned_at;
+  /// A time value given in ISO8601 combined date and time format that represents when the project was created.
+  String assigned_at;
 
-/// The links object contains the self object, which contains the resource relationship.
-String links;
+  /// The links object contains the self object, which contains the resource relationship.
+  String links;
 
-/// The status of assigning and fetching the resources.
-String status;
+  /// The status of assigning and fetching the resources.
+  String status;
 
-ProjectResource(this.urn, this.assigned_at, this.links, this.status);
+  ProjectResource(this.urn, this.assigned_at, this.links, this.status);
 
-factory ProjectResource.fromJson(Map<String, dynamic> json) =>
+  factory ProjectResource.fromJson(Map<String, dynamic> json) =>
       _$ProjectResourceFromJson(json);
   Map<String, dynamic> toJson() => _$ProjectResourceToJson(this);
 }

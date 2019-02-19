@@ -9,13 +9,13 @@ part 'destination.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Destination {
- 
   List<String> addresses = List();
-  List<int>droplet_ids = List();
-  List<String>load_balancer_uids = List();
+  List<int> droplet_ids = List();
+  List<String> load_balancer_uids = List();
   List<String> tags = List();
 
-  Destination(this.addresses, this.droplet_ids, this.load_balancer_uids, this.tags); 
+  Destination(
+      this.addresses, this.droplet_ids, this.load_balancer_uids, this.tags);
 
   factory Destination.fromJson(Map<String, dynamic> json) =>
       _$DestinationFromJson(json);

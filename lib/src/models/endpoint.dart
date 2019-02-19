@@ -8,7 +8,7 @@ part 'endpoint.g.dart';
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
 @JsonSerializable()
-class Endpoint{
+class Endpoint {
   /// A unique ID that can be used to identify and reference a CDN endpoint.
   String id;
 
@@ -25,7 +25,8 @@ class Endpoint{
   int ttl;
 
   Endpoint(this.id, this.origin, this.endpoint, this.created_at, this.ttl);
-      
-  factory Endpoint.fromJson(Map<String, dynamic> json) => _$EndpointFromJson(json);
+
+  factory Endpoint.fromJson(Map<String, dynamic> json) =>
+      _$EndpointFromJson(json);
   Map<String, dynamic> toJson() => _$EndpointToJson(this);
 }

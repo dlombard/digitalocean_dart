@@ -8,7 +8,7 @@ part 'domain.g.dart';
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
 @JsonSerializable()
-class Domain{
+class Domain {
   /// The name of the domain itself. This should follow the standard domain format of domain.TLD. For instance, example.com is a valid domain name.
   String name;
 
@@ -20,6 +20,6 @@ class Domain{
 
   Domain(this.name, this.ttl, this.zone_file);
 
-  factory Domain.fromJson(Map<String, dynamic>json) => _$DomainFromJson(json);
+  factory Domain.fromJson(Map<String, dynamic> json) => _$DomainFromJson(json);
   Map<String, dynamic> toJson() => _$DomainToJson(this);
 }

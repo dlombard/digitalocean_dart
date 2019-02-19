@@ -1,6 +1,6 @@
 /// DO-Dart is an implementation of the DigitalOcean api in Dart.
 /// It aims to enable developers such as me to interact with DigitalOcean API
-/// 
+///
 
 library do_dart;
 

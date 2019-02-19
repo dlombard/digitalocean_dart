@@ -45,7 +45,7 @@ class SSHKeyService extends DOService {
   /// Deletes SSHKey
   Future<void> delete(String SSHKeyId) async {
     String path = "$basePath/$SSHKeyId";
-    client.execute('DELETE', path);
+    await client.execute('DELETE', path);
   }
 
   List<SSHKey> _toList(List<dynamic> data) {

@@ -11,8 +11,8 @@ void main() {
     client = Client(envVars['DO_KEY']);
   });
 
-  group('Account', (){
-    test('getAccount', () async{
+  group('Account', () {
+    test('getAccount', () async {
       expect(await client.account.get(), isNotNull);
     });
   });

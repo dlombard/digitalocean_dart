@@ -11,8 +11,9 @@ void main() {
   setUpAll(() async {
     envVars = Platform.environment;
     client = Client(envVars['DO_KEY']);
-    DropletCreateRequest dcr =
-        DropletCreateRequest("test-droplet", 'nyc1', 's-1vcpu-1gb', 43515152, ssh_keys: [1551138]);
+    DropletCreateRequest dcr = DropletCreateRequest(
+        "test-droplet", 'nyc1', 's-1vcpu-1gb', 43515152,
+        ssh_keys: [1551138]);
     d = await client.droplet.create(dcr);
     expect(d, isNotNull);
 

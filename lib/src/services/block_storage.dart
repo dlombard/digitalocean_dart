@@ -82,7 +82,6 @@ class BlockStorageService extends DOService {
 
     await client.execute('DELETE', path);
   }
-
 }
 
 /// An annotation for the code generator to know that this class needs the

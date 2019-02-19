@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'region.dart';
+
 /// This allows the `Action` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
 /// the star denotes the source file name.
@@ -9,7 +10,6 @@ part 'load_balancer.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class LoadBalancer {
-
   /// A unique ID that can be used to identify and reference a Load Balancer.
   String id;
 
@@ -49,8 +49,22 @@ class LoadBalancer {
   /// A boolean value indicating whether HTTP requests to the Load Balancer on port 80 will be redirected to HTTPS on port 443.
   bool redirect_http_to_https;
 
-  LoadBalancer(this.id, this.name, this.ip, this.algorithm, this.status, this.created_at, this.forwarding_rules, this.health_check, this.sticky_sessions, this.region, this.tag, this.droplet_ids, this.redirect_http_to_https);
+  LoadBalancer(
+      this.id,
+      this.name,
+      this.ip,
+      this.algorithm,
+      this.status,
+      this.created_at,
+      this.forwarding_rules,
+      this.health_check,
+      this.sticky_sessions,
+      this.region,
+      this.tag,
+      this.droplet_ids,
+      this.redirect_http_to_https);
 
-  factory LoadBalancer.fromJson(Map<String, dynamic>json) => _$LoadBalancerFromJson(json);
+  factory LoadBalancer.fromJson(Map<String, dynamic> json) =>
+      _$LoadBalancerFromJson(json);
   Map<String, dynamic> toJson() => _$LoadBalancerToJson(this);
 }

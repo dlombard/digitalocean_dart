@@ -9,7 +9,6 @@ part 'image.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Image {
-
   /// A unique number that can be used to identify and reference a specific image.
   int id;
 
@@ -24,7 +23,7 @@ class Image {
 
   /// A uniquely identifying string that is associated with each of the DigitalOcean-provided public images. These can be used to reference a public image as an alternative to the numeric id.
   String slug;
-  
+
   /// This is a boolean value that indicates whether the image in question is public or not. An image that is public is available to all accounts. A non-public image is only accessible from your account.
   bool public;
 

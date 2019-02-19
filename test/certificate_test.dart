@@ -6,8 +6,8 @@ void main() {
   Map<String, String> envVars;
   Client client;
   Certificate c;
-  var privFile = new File('./test/key.pem');
-  var pubFile = new File('./test/cert.pem');
+  var privFile = File('./test/key.pem');
+  var pubFile = File('./test/cert.pem');
 
   setUpAll(() async {
     envVars = Platform.environment;

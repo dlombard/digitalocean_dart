@@ -24,7 +24,7 @@ void main() {
   test('blockstorage ', () async {
     try {
       BlockStorageCreateRequest bscr =
-          BlockStorageCreateRequest(1, "io",  "tor1");
+          BlockStorageCreateRequest(1, "io", "tor1");
       BlockStorage bs = await client.blockStorage.create(bscr);
       expect(bs, isNotNull);
       BlockStorage bs1 = await client.blockStorage.get(bs.id);
@@ -38,4 +38,3 @@ void main() {
     }
   });
 }
-

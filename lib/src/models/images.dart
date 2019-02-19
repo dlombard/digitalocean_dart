@@ -17,8 +17,7 @@ class Images extends IdoCollection {
 
   Images(this.images, Links links, Meta meta) : super(links, meta);
 
-  factory Images.fromJson(Map<String, dynamic> json) =>
-      _$ImagesFromJson(json);
+  factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
 
   Map<String, dynamic> toJson() => _$ImagesToJson(this);
 }

@@ -36,8 +36,18 @@ class Firewall {
   /// An array containing the names of the Tags assigned to the Firewall.
   List<String> tags;
 
-  Firewall(this.id, this.status, this.created_at, this.pending_changes, this.name, this.inbound_rules, this.outbound_rules, this.droplet_ids, this.tags);
+  Firewall(
+      this.id,
+      this.status,
+      this.created_at,
+      this.pending_changes,
+      this.name,
+      this.inbound_rules,
+      this.outbound_rules,
+      this.droplet_ids,
+      this.tags);
 
-  factory Firewall.fromJson(Map<String, dynamic>json) => _$FirewallFromJson(json);
+  factory Firewall.fromJson(Map<String, dynamic> json) =>
+      _$FirewallFromJson(json);
   Map<String, dynamic> toJson() => _$FirewallToJson(this);
 }

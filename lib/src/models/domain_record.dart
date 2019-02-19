@@ -8,8 +8,7 @@ part 'domain_record.g.dart';
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
 @JsonSerializable()
-
-class DomainRecord{
+class DomainRecord {
   int id;
   String type;
   String name;
@@ -21,9 +20,12 @@ class DomainRecord{
   int flags;
   String tag;
 
-  DomainRecord(this.id, this.type, this.name, this.data, this.ttl, this.flags, this.tag,{this.priority, this.port, this.weight});
+  DomainRecord(
+      this.id, this.type, this.name, this.data, this.ttl, this.flags, this.tag,
+      {this.priority, this.port, this.weight});
 
-  factory DomainRecord.fromJson(Map<String, dynamic> json) => _$DomainRecordFromJson(json);
+  factory DomainRecord.fromJson(Map<String, dynamic> json) =>
+      _$DomainRecordFromJson(json);
 
   Map<String, dynamic> toJson() => _$DomainRecordToJson(this);
 }

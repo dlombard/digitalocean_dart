@@ -52,7 +52,7 @@ class SnapshotService extends DOService {
   }
 
   /// Deletes snapshot
-  Future<void> delete(String snapshotId) async{
+  Future<void> delete(String snapshotId) async {
     String path = "$basePath/$snapshotId";
     await client.execute('DELETE', path);
   }

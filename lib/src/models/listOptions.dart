@@ -1,4 +1,4 @@
-class ListOptions{
+class ListOptions {
   int page;
   int perPage;
   ListOptions(this.page, {this.perPage});
@@ -6,7 +6,7 @@ class ListOptions{
   @override
   String toString() {
     String s = "$page";
-    if(this.perPage != null) s = s+"&$perPage";
+    if (this.perPage != null) s = s + "&$perPage";
 
     return s;
   }

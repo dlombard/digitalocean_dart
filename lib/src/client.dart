@@ -61,27 +61,27 @@ class Client {
   Client(this._api_token) {
     this.userAgent = "dodart/" + libraryVersion;
     buildDio();
-    account = new AccountService(this);
-    action = new ActionService(this);
-    blockStorage = new BlockStorageService(this);
-    blockStorageAction = new BlockStorageActionService(this);
-    certificate = new CertificateService(this);
-    domain = new DomainService(this);
-    domainRecord = new DomainRecordService(this);
-    droplet = new DropletService(this);
-    dropletAction = new DropletActionService(this);
-    endpoint = new EndpointService(this);
-    firewall = new FirewallService(this);
-    floatingIp = new FloatingIPService(this);
-    floatingIpAction = new FloatingIPActionService(this);
-    image = new ImageService(this);
-    imageAction = new ImageActionService(this);
-    project = new ProjectService(this);
-    projectResource = new ProjectResourceService(this);
-    region = new RegionService(this);
-    size = new SizeService(this);
-    snapshot = new SnapshotService(this);
-    ssh = new SSHKeyService(this);
+    account = AccountService(this);
+    action = ActionService(this);
+    blockStorage = BlockStorageService(this);
+    blockStorageAction = BlockStorageActionService(this);
+    certificate = CertificateService(this);
+    domain = DomainService(this);
+    domainRecord = DomainRecordService(this);
+    droplet = DropletService(this);
+    dropletAction = DropletActionService(this);
+    endpoint = EndpointService(this);
+    firewall = FirewallService(this);
+    floatingIp = FloatingIPService(this);
+    floatingIpAction = FloatingIPActionService(this);
+    image = ImageService(this);
+    imageAction = ImageActionService(this);
+    project = ProjectService(this);
+    projectResource = ProjectResourceService(this);
+    region = RegionService(this);
+    size = SizeService(this);
+    snapshot = SnapshotService(this);
+    ssh = SSHKeyService(this);
   }
 
   void buildDio() {
@@ -89,9 +89,9 @@ class Client {
     headers["Accept"] = mediaType;
     headers["User-Agent"] = userAgent;
     headers["Authorization"] = "Bearer " + this._api_token;
-    BaseOptions o = new BaseOptions(baseUrl: defaultBaseURL, headers: headers);
+    BaseOptions o = BaseOptions(baseUrl: defaultBaseURL, headers: headers);
 
-    _client = new Dio(o);
+    _client = Dio(o);
   }
 
   Future<dynamic> execute(String method, String path,
