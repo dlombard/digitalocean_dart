@@ -27,7 +27,7 @@ import './models/pages.dart';
 import 'exceptions/digital_ocean_exception.dart';
 
 class Client {
-  final String libraryVersion = "0.1.1";
+  final String libraryVersion = "0.1.2";
   final String defaultBaseURL = "https://api.digitalocean.com/";
   final String mediaType = "application/json";
   final String headerRateLimit = "RateLimit-Limit";
