@@ -10,7 +10,7 @@ Project _$ProjectFromJson(Map<String, dynamic> json) {
   return Project(
       json['id'] as String,
       json['owner_uuid'] as String,
-      json['owner_id'] as String,
+      json['owner_id'] as int,
       json['name'] as String,
       json['description'] as String,
       json['purpose'] as String,
