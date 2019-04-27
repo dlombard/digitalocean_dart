@@ -1,4 +1,7 @@
 ##[0.1.2]
+- Fix owner_id field type in project (thanks to @mponkin)
+
+##[0.1.2]
 - Added a Flutter example
 - Fixed type errors in Droplet model
 
