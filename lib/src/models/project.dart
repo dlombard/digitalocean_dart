@@ -16,7 +16,7 @@ class Project {
   String owner_uuid;
 
   /// The integer id of the project owner.
-  String owner_id;
+  int owner_id;
 
   /// The human-readable name for the project. The maximum length is 175 characters and the name must be unique.
   String name;
