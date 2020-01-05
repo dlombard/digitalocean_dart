@@ -9,7 +9,7 @@ import '../models/outbound_rule.dart';
 part 'firewall.g.dart';
 
 class FirewallService extends DOService {
-  FirewallService(Client client) : super(client, "/v2/firewalls");
+  FirewallService(Client client) : super(client, '/v2/firewalls');
 
   /// Create a new Firewall
   Future<Firewall> create(FirewallCreateRequest fcr) async {
@@ -19,7 +19,7 @@ class FirewallService extends DOService {
 
   /// Retrieve an existing Firewall
   Future<Firewall> get(String firewallId) async {
-    String path = "$basePath/$firewallId";
+    var path = '$basePath/$firewallId';
     dynamic data = await client.execute('GET', path);
 
     return Firewall.fromJson(data['firewall']);
@@ -36,7 +36,7 @@ class FirewallService extends DOService {
 
   /// Updates a firewall
   Future<Firewall> update(String firewallId, FirewallUpdateRequest fur) async {
-    String path = "$basePath/$firewallId";
+    var path = '$basePath/$firewallId';
     dynamic data = await client.execute('PUT', path, json: fur.toJson());
 
     return Firewall.fromJson(data['firewall']);
@@ -44,60 +44,60 @@ class FirewallService extends DOService {
 
   /// Deletes a firewall
   Future<void> delete(String firewallId) async {
-    String path = "$basePath/$firewallId";
+    var path = '$basePath/$firewallId';
     await client.execute('DELETE', path);
   }
 
   /// Add droplet under firewall
   Future<void> addDroplets(String firewallId, List<int> droplets_ids) async {
-    String path = "$basePath/$firewallId/droplets";
-    await client.execute('POST', path, json: {"droplet_ids": droplets_ids});
+    var path = '$basePath/$firewallId/droplets';
+    await client.execute('POST', path, json: {'droplet_ids': droplets_ids});
   }
 
   /// Removes droplets from firewall
   Future<void> removeDroplets(String firewallId, List<int> droplets_ids) async {
-    String path = "$basePath/$firewallId/droplets";
-    await client.execute('DELETE', path, json: {"droplet_ids": droplets_ids});
+    var path = '$basePath/$firewallId/droplets';
+    await client.execute('DELETE', path, json: {'droplet_ids': droplets_ids});
   }
 
   /// Adds tags
   Future<void> addTags(String firewallId, List<String> tags) async {
-    String path = "$basePath/$firewallId/tags";
-    await client.execute('POST', path, json: {"tags": tags});
+    var path = '$basePath/$firewallId/tags';
+    await client.execute('POST', path, json: {'tags': tags});
   }
 
   /// Remove tags
   Future<void> removeTags(String firewallId, List<String> tags) async {
-    String path = "$basePath/$firewallId/tags";
-    await client.execute('POST', path, json: {"tags": tags});
+    var path = '$basePath/$firewallId/tags';
+    await client.execute('POST', path, json: {'tags': tags});
   }
 
   /// Adds inbound rules to a Firewall
   Future<void> addInboundRules(
       String firewallId, List<InboundRule> rules) async {
-    String path = "$basePath/$firewallId/rules";
-    await client.execute('POST', path, json: {"inbound_rules": rules});
+    var path = '$basePath/$firewallId/rules';
+    await client.execute('POST', path, json: {'inbound_rules': rules});
   }
 
   /// Removes inbound rules to a Firewall
   Future<void> removeInboundRules(
       String firewallId, List<InboundRule> rules) async {
-    String path = "$basePath/$firewallId/rules";
-    await client.execute('DELETE', path, json: {"inbound_rules": rules});
+    var path = '$basePath/$firewallId/rules';
+    await client.execute('DELETE', path, json: {'inbound_rules': rules});
   }
 
   /// Adds outbount rules to a Firewall
   Future<void> addOutboundRules(
       String firewallId, List<OutboundRule> rules) async {
-    String path = "$basePath/$firewallId/rules";
-    await client.execute('POST', path, json: {"outbound_rules": rules});
+    var path = '$basePath/$firewallId/rules';
+    await client.execute('POST', path, json: {'outbound_rules': rules});
   }
 
   /// Removes outbount rules to a Firewall
   Future<void> removeOutboundRules(
       String firewallId, List<OutboundRule> rules) async {
-    String path = "$basePath/$firewallId/rules";
-    await client.execute('DELETE', path, json: {"outbound_rules": rules});
+    var path = '$basePath/$firewallId/rules';
+    await client.execute('DELETE', path, json: {'outbound_rules': rules});
   }
 
   List<Firewall> _toList(List<dynamic> data) {

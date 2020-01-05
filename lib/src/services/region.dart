@@ -6,10 +6,10 @@ import '../models/region.dart';
 import '../models/regions.dart';
 
 class RegionService extends DOService {
-  RegionService(Client client) : super(client, "/v2/regions");
+  RegionService(Client client) : super(client, '/v2/regions');
 
   Future<Regions> list([ListOptions op]) async {
-    String path = Utils.getPathFromListOptions(op, basePath);
+    var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
     List<Region> _ = List();

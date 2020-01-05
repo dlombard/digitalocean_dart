@@ -6,11 +6,11 @@ import '../models/snapshot.dart';
 import '../models/snapshots.dart';
 
 class SnapshotService extends DOService {
-  SnapshotService(Client client) : super(client, "/v2/snapshots");
+  SnapshotService(Client client) : super(client, '/v2/snapshots');
 
   /// Retrieve an existing snapshot by id
   Future<Snapshot> get(String snapshotId) async {
-    String path = "$basePath/$snapshotId";
+    var path = '$basePath/$snapshotId';
     dynamic data = await client.execute('GET', path);
 
     return Snapshot.fromJson(data['snapshot']);
@@ -18,7 +18,7 @@ class SnapshotService extends DOService {
 
   /// List all snapshots
   Future<Snapshots> list([ListOptions op]) async {
-    String path = Utils.getPathFromListOptions(op, basePath);
+    var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
     List<Snapshot> _ = _toList(data['snapshots']);
@@ -29,7 +29,7 @@ class SnapshotService extends DOService {
 
   /// List all Droplet snapshots
   Future<Snapshots> listDropletSnapshots([ListOptions op]) async {
-    String path = "$basePath?resource_type=droplet";
+    var path = '$basePath?resource_type=droplet';
     path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
@@ -41,7 +41,7 @@ class SnapshotService extends DOService {
 
   /// List all volume snapshots
   Future<Snapshots> listVolumeSnapshots([ListOptions op]) async {
-    String path = "$basePath?resource_type=volume";
+    var path = '$basePath?resource_type=volume';
     path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
@@ -53,7 +53,7 @@ class SnapshotService extends DOService {
 
   /// Deletes snapshot
   Future<void> delete(String snapshotId) async {
-    String path = "$basePath/$snapshotId";
+    var path = '$basePath/$snapshotId';
     await client.execute('DELETE', path);
   }
 

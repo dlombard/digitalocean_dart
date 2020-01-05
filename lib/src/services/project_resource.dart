@@ -7,12 +7,12 @@ import '../models/project_resources.dart';
 import '../models/urn.dart';
 
 class ProjectResourceService extends DOService {
-  final String _fieldName = "resources";
-  ProjectResourceService(Client client) : super(client, "/v2/projects");
+  final String _fieldName = 'resources';
+  ProjectResourceService(Client client) : super(client, '/v2/projects');
 
   /// Lists Project Resources
   Future<ProjectResources> listResources(String projectId) async {
-    String path = "$basePath/$projectId/resources";
+    var path = '$basePath/$projectId/resources';
     dynamic data = await client.execute('GET', path);
 
     List<ProjectResource> _ = _toList(data[_fieldName]);
@@ -24,20 +24,20 @@ class ProjectResourceService extends DOService {
   /// Assigns Project Resources
   Future<ProjectResource> assignResource(
       String projectId, List<Urn> urns) async {
-    String path = "$basePath/$projectId/resources";
+    var path = '$basePath/$projectId/resources';
     List<String> resources = List();
     for (Urn _ in urns) {
       resources.add(_.toString());
     }
     dynamic data =
-        await client.execute('POST', path, json: {"resources": resources});
+        await client.execute('POST', path, json: {'resources': resources});
 
     return ProjectResource.fromJson(data['ssh_key']);
   }
 
   /// Lists Default Project Resources
   Future<ProjectResources> listDefaultProjectResources() async {
-    String path = "$basePath/default/resources";
+    var path = '$basePath/default/resources';
     dynamic data = await client.execute('GET', path);
     List<ProjectResource> _ = _toList(data[_fieldName]);
     Map<String, dynamic> collectionData = client.getDOCollectionData(data);
@@ -48,7 +48,7 @@ class ProjectResourceService extends DOService {
   /// Assigns Default Project Resources
   Future<ProjectResources> assignDefaultProjectResources(
       [ListOptions op]) async {
-    String path = Utils.getPathFromListOptions(op, basePath);
+    var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
     List<ProjectResource> _ = _toList(data['ProjectResources']);

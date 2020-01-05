@@ -11,14 +11,14 @@ class ActionService extends DOService {
 
   /// Retrieve an existing Action
   Future<Action> get(int actionId) async {
-    String path = basePath + "/" + actionId.toString();
+    var path = basePath + '/' + actionId.toString();
     dynamic data = await client.execute('GET', path);
     return Action.fromJson(data['action']);
   }
 
   /// List all Actions
   Future<Actions> list({ListOptions listOptions}) async {
-    String path = Utils.getPathFromListOptions(listOptions, basePath);
+    var path = Utils.getPathFromListOptions(listOptions, basePath);
 
     dynamic r = await client.execute('GET', path);
 

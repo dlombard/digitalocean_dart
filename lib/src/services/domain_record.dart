@@ -10,11 +10,11 @@ part 'domain_record.g.dart';
 
 class DomainRecordService extends DOService {
   final String _FIELD_NAME = 'domain_record';
-  DomainRecordService(Client client) : super(client, "/v2/domains");
+  DomainRecordService(Client client) : super(client, '/v2/domains');
 
   /// List all Domain Records
   Future<DomainRecords> list(String name, {ListOptions ops}) async {
-    String path = basePath + "/" + name + "/records";
+    var path = basePath + '/' + name + '/records';
 
     if (ops != null) path = Utils.getPathFromListOptions(ops, path);
 
@@ -30,7 +30,7 @@ class DomainRecordService extends DOService {
   ///
   Future<DomainRecord> create(
       String name, DomainRecordCreateRequest drcr) async {
-    String path = basePath + "/" + name + "/records";
+    var path = basePath + '/' + name + '/records';
 
     dynamic data = await client.execute('POST', path, json: drcr.toJson());
 
@@ -39,7 +39,7 @@ class DomainRecordService extends DOService {
 
   /// Retrieve an existing domain record
   Future<DomainRecord> get(String name, String recordId) async {
-    String path = basePath + "/" + name + "/records" + recordId;
+    var path = basePath + '/' + name + '/records' + recordId;
 
     dynamic data = await client.execute('GET', path);
 
@@ -49,7 +49,7 @@ class DomainRecordService extends DOService {
   /// Update a Domain Record
   Future<DomainRecord> update(
       String name, String recordId, DomainRecordUpdateRequest drur) async {
-    String path = basePath + "/" + name + "/records" + recordId;
+    var path = basePath + '/' + name + '/records' + recordId;
 
     dynamic data = await client.execute('PUT', path, json: drur.toJson());
 
@@ -58,7 +58,7 @@ class DomainRecordService extends DOService {
 
   /// Delete a domain Record
   Future<void> delete(String name, String recordId) async {
-    String path = basePath + "/" + name + "/records" + recordId;
+    var path = basePath + '/' + name + '/records' + recordId;
 
     await client.execute('DELETE', path);
   }

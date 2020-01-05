@@ -6,10 +6,10 @@ import '../models/size.dart';
 import '../models/sizes.dart';
 
 class SizeService extends DOService {
-  SizeService(Client client) : super(client, "/v2/sizes");
+  SizeService(Client client) : super(client, '/v2/sizes');
 
   Future<Sizes> list([ListOptions op]) async {
-    String path = Utils.getPathFromListOptions(op, basePath);
+    var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
     List<Size> _ = List();

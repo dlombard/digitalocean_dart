@@ -15,16 +15,16 @@ part 'block_storage.g.dart';
 
 class BlockStorageService extends DOService {
   final String _FIELD_NAME = 'volume';
-  BlockStorageService(Client client) : super(client, "/v2/volumes");
+  BlockStorageService(Client client) : super(client, '/v2/volumes');
 
   /// List all Block Storage volumes
   Future<BlockStorages> list({ListOptions listOptions}) async {
-    String path = basePath;
+    var path = basePath;
     if (listOptions != null) {
       path = Utils.getPathFromListOptions(listOptions, path);
     }
     dynamic r = await client.execute('GET', path);
-    List<BlockStorage> bs = _toList(r[_FIELD_NAME + "s"]);
+    List<BlockStorage> bs = _toList(r[_FIELD_NAME + 's']);
     Map<String, dynamic> collectionData = client.getDOCollectionData(r);
 
     return BlockStorages(bs, collectionData['links'], collectionData['meta']);
@@ -47,8 +47,8 @@ class BlockStorageService extends DOService {
 
   /// Retrieve an existing Block Storage volume
   Future<BlockStorage> get(String id) async {
-    String path = basePath + "/" + id;
-    dynamic data = await client.execute("GET", path);
+    var path = basePath + '/' + id;
+    dynamic data = await client.execute('GET', path);
 
     return BlockStorage.fromJson(data[_FIELD_NAME]);
   }
@@ -56,7 +56,7 @@ class BlockStorageService extends DOService {
   /// List snapshots for a volume
   Future<Snapshots> listSnapshots(String id) async {
     List<Snapshot> snaps = List();
-    String path = basePath + "/" + id + "/snapshots";
+    var path = basePath + '/' + id + '/snapshots';
 
     dynamic data = await client.execute('GET', path);
 
@@ -71,14 +71,14 @@ class BlockStorageService extends DOService {
 
   /// Create snapshot from a volume
   Future<Snapshot> createSnapshot(String id, String name) async {
-    String path = basePath + "/" + id + "/snapshots";
-    dynamic data = await client.execute('POST', path, json: {"name": name});
+    var path = basePath + '/' + id + '/snapshots';
+    dynamic data = await client.execute('POST', path, json: {'name': name});
     return Snapshot.fromJson(data['snapshot']);
   }
 
   /// Delete a Block Storage volume
   Future<void> delete(String id) async {
-    String path = basePath + "/" + id;
+    var path = basePath + '/' + id;
 
     await client.execute('DELETE', path);
   }

@@ -6,13 +6,13 @@ import '../models/project.dart';
 import '../models/projects.dart';
 
 class ProjectService extends DOService {
-  ProjectService(Client client) : super(client, "/v2/projects");
+  ProjectService(Client client) : super(client, '/v2/projects');
 
   /// Create a project
-  /// [purpose]: The purpose of the project. The maximum length is 255 characters. For examples of valid purposes, see the "Purpose" class or pass a random string
+  /// [purpose]: The purpose of the project. The maximum length is 255 characters. For examples of valid purposes, see the 'Purpose' class or pass a random string
   Future<Project> create(String name, String purpose,
       [String description, Environment environment]) async {
-    Map<String, dynamic> json = {"name": name, "purpose": purpose};
+    Map<String, dynamic> json = {'name': name, 'purpose': purpose};
     if (description != null) json['description'] = description;
     if (environment != null) json['environment'] = environment;
 
@@ -23,7 +23,7 @@ class ProjectService extends DOService {
 
   /// Lists all Projects
   Future<Projects> list([ListOptions ops]) async {
-    String path = Utils.getPathFromListOptions(ops, basePath);
+    var path = Utils.getPathFromListOptions(ops, basePath);
 
     dynamic data = await client.execute('GET', path);
     Map<String, dynamic> collectionData = client.getDOCollectionData(data);
@@ -36,13 +36,13 @@ class ProjectService extends DOService {
   Future<Project> update(String projectId, String name, String description,
       String purpose, bool is_default,
       [Environment e]) async {
-    String path = "$basePath/$projectId";
+    var path = '$basePath/$projectId';
     Map<String, dynamic> json = {
-      "name": name,
-      "description": description,
-      "purpose": purpose,
-      "is_default": is_default,
-      "environment": e
+      'name': name,
+      'description': description,
+      'purpose': purpose,
+      'is_default': is_default,
+      'environment': e
     };
 
     dynamic data = await client.execute('PUT', path, json: json);
@@ -54,13 +54,13 @@ class ProjectService extends DOService {
   Future<Project> patch(String projectId, String name, String description,
       String purpose, bool is_default,
       [Environment e]) async {
-    String path = "$basePath/$projectId";
+    var path = '$basePath/$projectId';
     Map<String, dynamic> json = {
-      "name": name,
-      "description": description,
-      "purpose": purpose,
-      "is_default": is_default,
-      "environment": e
+      'name': name,
+      'description': description,
+      'purpose': purpose,
+      'is_default': is_default,
+      'environment': e
     };
 
     dynamic data = await client.execute('PATCH', path, json: json);
@@ -70,7 +70,7 @@ class ProjectService extends DOService {
 
   /// Get a project
   Future<Project> get(String projectId) async {
-    String path = "$basePath/$projectId";
+    var path = '$basePath/$projectId';
 
     dynamic data = await client.execute('GET', path);
 
@@ -79,7 +79,7 @@ class ProjectService extends DOService {
 
   /// Get default project
   Future<Project> getDefault() async {
-    String path = "$basePath/default";
+    var path = '$basePath/default';
 
     dynamic data = await client.execute('GET', path);
 
@@ -90,13 +90,13 @@ class ProjectService extends DOService {
   Future<Project> updateDefault(
       String name, String description, String purpose, bool is_default,
       [Environment e]) async {
-    String path = "$basePath/default";
+    var path = '$basePath/default';
     Map<String, dynamic> json = {
-      "name": name,
-      "description": description,
-      "purpose": purpose,
-      "is_default": is_default,
-      "environment": e
+      'name': name,
+      'description': description,
+      'purpose': purpose,
+      'is_default': is_default,
+      'environment': e
     };
 
     dynamic data = await client.execute('PUT', path, json: json);
@@ -108,13 +108,13 @@ class ProjectService extends DOService {
   Future<Project> patchDefault(
       String name, String description, String purpose, bool is_default,
       [Environment e]) async {
-    String path = "$basePath/default";
+    var path = '$basePath/default';
     Map<String, dynamic> json = {
-      "name": name,
-      "description": description,
-      "purpose": purpose,
-      "is_default": is_default,
-      "environment": e
+      'name': name,
+      'description': description,
+      'purpose': purpose,
+      'is_default': is_default,
+      'environment': e
     };
 
     dynamic data = await client.execute('PATCH', path, json: json);
@@ -134,13 +134,13 @@ class ProjectService extends DOService {
 enum Environment { Development, Staging, Production }
 
 class Purpose {
-  static final String trying = "Just trying out DigitalOcean";
-  static final String educational = "Class project / Educational purposes";
-  static final String web = "Website or blog";
-  static final String webApp = "Web Application";
-  static final String service = "Service or API";
-  static final String mobileApp = "Mobile Application";
-  static final String ai = "Machine learning / AI / Data processing";
-  static final String iot = "IoT";
-  static final String ops = "Operational / Developer tooling";
+  static final String trying = 'Just trying out DigitalOcean';
+  static final String educational = 'Class project / Educational purposes';
+  static final String web = 'Website or blog';
+  static final String webApp = 'Web Application';
+  static final String service = 'Service or API';
+  static final String mobileApp = 'Mobile Application';
+  static final String ai = 'Machine learning / AI / Data processing';
+  static final String iot = 'IoT';
+  static final String ops = 'Operational / Developer tooling';
 }

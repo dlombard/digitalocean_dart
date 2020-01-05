@@ -7,11 +7,11 @@ import '../models/listOptions.dart';
 
 class DomainService extends DOService {
   final String _FIELD_NAME = 'domain';
-  DomainService(Client client) : super(client, "/v2/domains");
+  DomainService(Client client) : super(client, '/v2/domains');
 
   /// List all Domains
   Future<Domains> list({ListOptions ops}) async {
-    String path = basePath;
+    var path = basePath;
 
     if (ops != null) path = Utils.getPathFromListOptions(ops, basePath);
 
@@ -26,7 +26,7 @@ class DomainService extends DOService {
   /// Create a new Domain
   ///
   Future<Domain> create(String name, {String ip_address}) async {
-    Map<String, dynamic> json = {"name": name};
+    Map<String, dynamic> json = {'name': name};
     if (ip_address != null) json['ip_address'] = ip_address;
     dynamic data = await client.execute('POST', basePath, json: json);
 
@@ -35,7 +35,7 @@ class DomainService extends DOService {
 
   /// Retrieve an existing domain
   Future<Domain> get(String name) async {
-    String path = basePath + "/" + name;
+    var path = basePath + '/' + name;
 
     dynamic data = await client.execute('GET', path);
 
@@ -44,7 +44,7 @@ class DomainService extends DOService {
 
   /// Delete a domain
   Future<void> delete(String name) async {
-    String path = basePath + "/" + name;
+    var path = basePath + '/' + name;
 
     await client.execute('DELETE', path);
   }

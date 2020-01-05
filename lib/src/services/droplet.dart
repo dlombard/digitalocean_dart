@@ -18,7 +18,7 @@ part 'droplet.g.dart';
 class DropletService extends DOService {
   final String _FIELD_NAME = 'droplet';
 
-  DropletService(Client client) : super(client, "/v2/droplets");
+  DropletService(Client client) : super(client, '/v2/droplets');
 
   /// Creates a new Droplet
   Future<Droplet> create(DropletCreateRequest dcr) async {
@@ -33,7 +33,7 @@ class DropletService extends DOService {
 
   /// Retrieves an existing Droplet by id
   Future<Droplet> get(int dropletId) async {
-    String path = "$basePath/$dropletId";
+    var path = '$basePath/$dropletId';
 
     dynamic data = await client.execute('GET', path);
 
@@ -42,20 +42,20 @@ class DropletService extends DOService {
 
   /// Lists All Droplets
   Future<Droplets> list([ListOptions op]) async {
-    String path = Utils.getPathFromListOptions(op, basePath);
+    var path = Utils.getPathFromListOptions(op, basePath);
     return _getList(path);
   }
 
   /// Lists Droplets by Tag
   Future<Droplets> listByTag(String tagName, [ListOptions op]) async {
-    String path = "$basePath?tag_name=$tagName";
+    var path = '$basePath?tag_name=$tagName';
     path = Utils.getPathFromListOptions(op, path);
     return _getList(path);
   }
 
   /// Lists all available Kernels for a Droplet
   Future<Kernels> kernels(int dropletId, [ListOptions op]) async {
-    String path = "$basePath/$dropletId/kernels";
+    var path = '$basePath/$dropletId/kernels';
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
@@ -70,7 +70,7 @@ class DropletService extends DOService {
 
   /// Lists snapshots for a Droplet
   Future<Snapshots> snapshots(int dropletId, [ListOptions op]) async {
-    String path = "$basePath/$dropletId/snapshots";
+    var path = '$basePath/$dropletId/snapshots';
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
@@ -85,7 +85,7 @@ class DropletService extends DOService {
 
   /// Lists backups for a Droplet
   Future<Backups> backups(int dropletId, [ListOptions op]) async {
-    String path = "$basePath/$dropletId/backups";
+    var path = '$basePath/$dropletId/backups';
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
@@ -100,7 +100,7 @@ class DropletService extends DOService {
 
   /// Lists actions for a Droplet
   Future<Actions> actions(int dropletId, [ListOptions op]) async {
-    String path = "$basePath/$dropletId/actions";
+    var path = '$basePath/$dropletId/actions';
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
@@ -115,13 +115,13 @@ class DropletService extends DOService {
 
   ///Deletes a droplet
   Future<void> delete(int dropletId) async {
-    String path = "$basePath/$dropletId";
+    var path = '$basePath/$dropletId';
     await client.execute('DELETE', path);
   }
 
   /// Deletes droplets by tag
   Future<void> deleteByTag(String tagName) async {
-    String path = "$basePath?tag_name=$tagName";
+    var path = '$basePath?tag_name=$tagName';
     await client.execute('DELETE', path);
   }
 
@@ -129,7 +129,7 @@ class DropletService extends DOService {
   Future<Droplets> lisDropletNeighbors(
     int dropletId,
   ) async {
-    String path = "$basePath/$dropletId/neighbors";
+    var path = '$basePath/$dropletId/neighbors';
     dynamic data = await client.execute('GET', path);
 
     List<Droplet> droplets = _toDropletList(data['droplets']);
@@ -139,11 +139,11 @@ class DropletService extends DOService {
 
   /* /// Lists Neighbors running on the same physical hardware
   Future<Droplets> listAllNeighbors() async {
-    String path = "/v2/reports/neighbors";
+    var path = '/v2/reports/neighbors';
     return _getList(path);
   }*/
 
-  Future<Droplets> _getList(String path, [String method = 'GET']) async {
+  Future<Droplets> _getList(var path, [String method = 'GET']) async {
     dynamic data = await client.execute(method, path);
 
     Map<String, dynamic> collectionData = client.getDOCollectionData(data);

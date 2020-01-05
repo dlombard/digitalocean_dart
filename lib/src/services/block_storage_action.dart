@@ -5,15 +5,15 @@ import 'doService.dart';
 
 /// Block Storage actions are commands that can be given to a DigitalOcean Block Storage volume
 class BlockStorageActionService extends DOService {
-  BlockStorageActionService(Client client) : super(client, "/v2/volumes");
+  BlockStorageActionService(Client client) : super(client, '/v2/volumes');
 
   /// Attach a Block Storage volume to a Droplet
   Future<Action> attach(String volumeId, int dropletId, {String region}) async {
-    String type = "attach";
+    var type = 'attach';
 
     Map<String, dynamic> requestObj = {
-      "type": type,
-      "droplet_id": dropletId,
+      'type': type,
+      'droplet_id': dropletId,
     };
     if (region != null) requestObj['region'] = region;
 
@@ -22,10 +22,10 @@ class BlockStorageActionService extends DOService {
 
   /// Remove a Block Storage volume from a Droplet
   Future<Action> detach(String volumeId, int dropletId, {String region}) {
-    String type = "detach";
+    var type = 'detach';
     Map<String, dynamic> requestObj = {
-      "type": type,
-      "droplet_id": dropletId,
+      'type': type,
+      'droplet_id': dropletId,
     };
     if (region != null) requestObj['region'] = region;
 
@@ -34,10 +34,10 @@ class BlockStorageActionService extends DOService {
 
   /// Resize a volume
   Future<Action> resize(String volumeId, int sizeGigabytes, {String region}) {
-    String type = "resize";
+    var type = 'resize';
     Map<String, dynamic> requestObj = {
-      "type": type,
-      "size_gigabytes": sizeGigabytes,
+      'type': type,
+      'size_gigabytes': sizeGigabytes,
     };
     if (region != null) requestObj['region'] = region;
     return _performAction(volumeId, requestObj);
@@ -45,7 +45,7 @@ class BlockStorageActionService extends DOService {
 
   /// List all actions for a volume
   Future<Actions> list(String volumeId) async {
-    String path = basePath + "/" + volumeId + "/actions";
+    var path = basePath + '/' + volumeId + '/actions';
     dynamic data = await client.execute('GET', path);
 
     List<Action> actions = _toList(data['actions']);
@@ -57,7 +57,7 @@ class BlockStorageActionService extends DOService {
   /// Retrieve an existing volume action
   /// [actionId]: The id of the action
   Future<Action> getAction(String volumeId, String actionId) async {
-    String path = "$basePath/$volumeId/actions/$actionId";
+    var path = '$basePath/$volumeId/actions/$actionId';
 
     dynamic data = await client.execute('GET', path);
 
@@ -66,7 +66,7 @@ class BlockStorageActionService extends DOService {
 
   Future<Action> _performAction(
       String volumeId, Map<String, dynamic> json) async {
-    String path = basePath + "/" + volumeId + "/actions";
+    var path = basePath + '/' + volumeId + '/actions';
     dynamic data = await client.execute('POST', path, json: json);
 
     return Action.fromJson(data['action']);

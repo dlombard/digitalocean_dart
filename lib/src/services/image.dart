@@ -8,11 +8,11 @@ import '../models/action.dart';
 import '../models/actions.dart';
 
 class ImageService extends DOService {
-  ImageService(Client client) : super(client, "/v2/images");
+  ImageService(Client client) : super(client, '/v2/images');
 
   /// List all Images
   Future<Images> list([ListOptions op]) async {
-    String path = Utils.getPathFromListOptions(op, basePath);
+    var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
 
@@ -23,7 +23,7 @@ class ImageService extends DOService {
 
   /// List all Distribution Images
   Future<Images> listDistributionImages([ListOptions op]) async {
-    String path = "$basePath?type=distribution";
+    var path = '$basePath?type=distribution';
     path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
@@ -35,7 +35,7 @@ class ImageService extends DOService {
 
   /// List all Application Images
   Future<Images> listApplicationImages([ListOptions op]) async {
-    String path = "$basePath?type=application";
+    var path = '$basePath?type=application';
     path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
@@ -47,7 +47,7 @@ class ImageService extends DOService {
 
   /// List all User's Images
   Future<Images> listUsersImages([ListOptions op]) async {
-    String path = "$basePath?private=true";
+    var path = '$basePath?private=true';
     path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
@@ -59,7 +59,7 @@ class ImageService extends DOService {
 
   /// List all User's Images
   Future<Images> listByTag(String tagName, [ListOptions op]) async {
-    String path = "$basePath?tag_name=$tagName";
+    var path = '$basePath?tag_name=$tagName';
     path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
@@ -73,9 +73,9 @@ class ImageService extends DOService {
   Future<Image> create(String name, String url, String region,
       [String distribution, String description, List<String> tags]) async {
     Map<String, dynamic> json = {
-      "name": name,
-      "url": url,
-      "region": region,
+      'name': name,
+      'url': url,
+      'region': region,
     };
 
     if (distribution != null) json['distribution'] = distribution;
@@ -89,7 +89,7 @@ class ImageService extends DOService {
 
   /// Retrieve an existing Image by id
   Future<Image> get(String imageId) async {
-    String path = '$basePath/$imageId';
+    var path = '$basePath/$imageId';
     dynamic data = await client.execute('GET', path);
 
     return Image.fromJson(data['image']);
@@ -97,7 +97,7 @@ class ImageService extends DOService {
 
   /// Retrieve an existing Image by slug
   Future<Image> getBySlug(String slug) async {
-    String path = '$basePath/$slug';
+    var path = '$basePath/$slug';
     dynamic data = await client.execute('GET', path);
 
     return Image.fromJson(data['image']);
@@ -106,10 +106,10 @@ class ImageService extends DOService {
   /// Updates an image
   Future<Image> update(String imageId, String name,
       [String distribution, String description]) async {
-    String path = "$basePath/$imageId";
+    var path = '$basePath/$imageId';
 
     Map<String, dynamic> json = {
-      "name": name,
+      'name': name,
     };
     if (distribution != null) json['distribution'] = distribution;
     if (description != null) json['description'] = description;
@@ -121,7 +121,7 @@ class ImageService extends DOService {
 
   /// List image actions
   Future<Actions> actions(String imageId) async {
-    String path = "$basePath/$imageId/actions";
+    var path = '$basePath/$imageId/actions';
 
     dynamic data = await client.execute('GET', path);
     Map<String, dynamic> collectionData = client.getDOCollectionData(data);

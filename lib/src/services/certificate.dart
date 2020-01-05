@@ -9,7 +9,7 @@ part 'certificate.g.dart';
 
 class CertificateService extends DOService {
   final String _FIELD_NAME = 'certificate';
-  CertificateService(Client client) : super(client, "/v2/certificates");
+  CertificateService(Client client) : super(client, '/v2/certificates');
 
   /// Create a new certificate
   Future<Certificate> create(CertificateCreateRequest ccr) async {
@@ -20,7 +20,7 @@ class CertificateService extends DOService {
 
   /// Retrieve an existing certificate
   Future<Certificate> get(String certificateId) async {
-    String path = basePath + "/" + certificateId;
+    var path = basePath + '/' + certificateId;
     dynamic data = await client.execute('GET', path);
 
     return Certificate.fromJson(data[_FIELD_NAME]);
@@ -28,7 +28,7 @@ class CertificateService extends DOService {
 
   /// List all certificates
   Future<Certificates> list({ListOptions ops}) async {
-    String path = basePath;
+    var path = basePath;
 
     if (ops != null) path = Utils.getPathFromListOptions(ops, basePath);
 
@@ -41,7 +41,7 @@ class CertificateService extends DOService {
   }
 
   Future<void> delete(String certificateId) async {
-    String path = basePath + "/" + certificateId;
+    var path = basePath + '/' + certificateId;
 
     await client.execute('DELETE', path);
   }

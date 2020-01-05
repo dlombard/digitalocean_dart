@@ -27,12 +27,12 @@ import './models/pages.dart';
 import 'exceptions/digital_ocean_exception.dart';
 
 class Client {
-  final String libraryVersion = "0.1.3";
-  final String defaultBaseURL = "https://api.digitalocean.com/";
-  final String mediaType = "application/json";
-  final String headerRateLimit = "RateLimit-Limit";
-  final String headerRateRemaining = "RateLimit-Remaining";
-  final String headerRateReset = "RateLimit-Reset";
+  final String libraryVersion = '0.1.4';
+  final String defaultBaseURL = 'https://api.digitalocean.com/';
+  final String mediaType = 'application/json';
+  final String headerRateLimit = 'RateLimit-Limit';
+  final String headerRateRemaining = 'RateLimit-Remaining';
+  final String headerRateReset = 'RateLimit-Reset';
   final String _api_token;
   AccountService account;
   ActionService action;
@@ -59,7 +59,7 @@ class Client {
   String userAgent;
 
   Client(this._api_token) {
-    this.userAgent = "dodart/" + libraryVersion;
+    this.userAgent = 'dodart/' + libraryVersion;
     buildDio();
     account = AccountService(this);
     action = ActionService(this);
@@ -86,9 +86,9 @@ class Client {
 
   void buildDio() {
     Map<String, dynamic> headers = Map();
-    headers["Accept"] = mediaType;
-    headers["User-Agent"] = userAgent;
-    headers["Authorization"] = "Bearer " + this._api_token;
+    headers['Accept'] = mediaType;
+    headers['User-Agent'] = userAgent;
+    headers['Authorization'] = 'Bearer ' + this._api_token;
     BaseOptions o = BaseOptions(baseUrl: defaultBaseURL, headers: headers);
 
     _client = Dio(o);
@@ -124,8 +124,8 @@ class Client {
 
   Map<String, dynamic> getDOCollectionData(dynamic responseData) {
     Map<String, dynamic> res = {
-      "links": _getLinks(responseData),
-      "meta": _getMeta(responseData)
+      'links': _getLinks(responseData),
+      'meta': _getMeta(responseData)
     };
     return res;
   }
