@@ -1,4 +1,7 @@
+import 'dart:async';
+import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:do_dart/do_dart.dart';
 import 'dart:convert';
 import 'services/account.dart';
 import 'services/action.dart';
@@ -55,12 +58,12 @@ class Client {
   SizeService size;
   SnapshotService snapshot;
   SSHKeyService ssh;
-  Dio _client;
+  HttpClient _client;
   String userAgent;
 
   Client(this._api_token) {
     this.userAgent = 'dodart/' + libraryVersion;
-    buildDio();
+    buildClient();
     account = AccountService(this);
     action = ActionService(this);
     blockStorage = BlockStorageService(this);
@@ -84,42 +87,97 @@ class Client {
     ssh = SSHKeyService(this);
   }
 
-  void buildDio() {
-    Map<String, dynamic> headers = Map();
-    headers['Accept'] = mediaType;
-    headers['User-Agent'] = userAgent;
-    headers['Authorization'] = 'Bearer ' + this._api_token;
-    BaseOptions o = BaseOptions(baseUrl: defaultBaseURL, headers: headers);
-
-    _client = Dio(o);
+  void buildClient() {
+    _client = HttpClient();
   }
 
   Future<dynamic> execute(String method, String path,
       {Map<String, dynamic> json}) async {
     try {
-      Response r;
-      _client.options.method = method;
-      if (json != null)
-        r = await _client.request(path,
-            options: Options(method: method), data: jsonEncode(json));
+      var params = path.split('?');
+      var uri;
+      if (params.length == 1)
+        uri = Uri(scheme: 'https', host: 'api.digitalocean.com', path: path);
       else
-        r = await _client.request(path, options: Options(method: method));
+        uri = Uri(
+            scheme: 'https',
+            host: 'api.digitalocean.com',
+            path: params.elementAt(0),
+            query: params.elementAt(1));
 
-      return r.data;
-    } on DioError catch (dioError) {
-      if (dioError.response != null) {
-        print(dioError.response.request.data);
-        if (dioError.response.statusCode >= 500) {
-          throw DigitalOceanException(
-              dioError.response.data, dioError.response.statusCode);
-        } else
-          throw DigitalOceanException(
-              dioError.response.data['message'], dioError.response.statusCode,
-              id: dioError.response.data['id']);
-      } else {
-        rethrow;
+      switch (method.toUpperCase()) {
+        case 'DELETE':
+          return executeRequest(
+            await _client.deleteUrl(uri),
+          );
+          break;
+        case 'GET':
+          if (json != null)
+            return executeRequest(await _client.getUrl(uri), json: json);
+          else
+            return executeRequest(await _client.getUrl(uri));
+          break;
+        case 'PATCH':
+          if (json != null)
+            return executeRequest(await _client.patchUrl(uri), json: json);
+          else
+            return executeRequest(await _client.patchUrl(uri));
+          break;
+        case 'POST':
+          if (json != null)
+            return executeRequest(await _client.postUrl(uri), json: json);
+          else
+            return executeRequest(await _client.postUrl(uri));
+          break;
+        case 'PUT':
+          if (json != null)
+            return executeRequest(await _client.putUrl(uri), json: json);
+          else
+            return executeRequest(await _client.putUrl(uri));
+          break;
+        default:
+          break;
       }
+
+      //return response;
+    } on HttpException catch (e) {
+      print(e.message);
+    } on DigitalOceanException catch (dE) {
+      print(dE.toString());
+    } on Exception catch (e) {
+      print(e);
     }
+  }
+
+  Future<dynamic> executeRequest(HttpClientRequest request,
+      {Map<String, dynamic> json}) async {
+    request.headers.contentType =
+        new ContentType("application", "json", charset: "utf-8");
+    request.headers.add('Authorization', 'Bearer ' + this._api_token);
+    request.headers.add('User-Agent', userAgent);
+
+    if (json != null) request.write(jsonEncode(json));
+
+    HttpClientResponse response = await request.close();
+    var completer = Completer<String>();
+
+    var sink = StringConversionSink.withCallback((s) => completer.complete(s));
+
+    response.transform(utf8.decoder).listen(sink.add,
+        onError: completer.completeError,
+        onDone: sink.close,
+        cancelOnError: true);
+
+    var body = await completer.future;
+
+    if (response.statusCode >= 400) {
+      throw new DigitalOceanException(body, response.statusCode,
+          uri: request.uri.toString());
+    }
+    if (body.isNotEmpty) {
+      return jsonDecode(body);
+    } else
+      return body;
   }
 
   Map<String, dynamic> getDOCollectionData(dynamic responseData) {
@@ -131,13 +189,19 @@ class Client {
   }
 
   Links _getLinks(dynamic responseData) {
-    if (responseData['links']['pages'] != null) {
-      return Links(Pages.fromJson(responseData['links']['pages']));
+    if (responseData['links'] != null) {
+      if (responseData['links']['pages'] != null) {
+        return Links(Pages.fromJson(responseData['links']['pages']));
+      }
     }
+
     return Links(null);
   }
 
   Meta _getMeta(dynamic responseData) {
-    return Meta.fromJson(responseData['meta']);
+    if (responseData['meta'] != null) {
+      return Meta.fromJson(responseData['meta']);
+    }
+    return Meta(null);
   }
 }
