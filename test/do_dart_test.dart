@@ -42,7 +42,6 @@ void main() {
   });
 
   tearDownAll(() async {
-    
     // Delete droplets
     await client.droplet.delete(d.id);
     if (ds != null) {

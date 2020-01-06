@@ -17,7 +17,7 @@ class ImageActionService extends DOService {
   Future<Action> transfer(String imageId, String region) async {
     var type = 'transfer';
 
-   var json = {'type': type, 'region': region};
+    var json = {'type': type, 'region': region};
     return _performAction(imageId, json);
   }
 
