@@ -42,7 +42,7 @@ void main() {
   });
 
   tearDownAll(() async {
-    if (snap != null) await client.image.delete(snap.id);
+    
     // Delete droplets
     await client.droplet.delete(d.id);
     if (ds != null) {
