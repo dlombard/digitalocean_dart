@@ -1,4 +1,4 @@
-## [0.1.3]
+## [0.1.4]
 - Move HTTP client to dart:io package
 - Type inference fix
 - Added missing function to delete image
