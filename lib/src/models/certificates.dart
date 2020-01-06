@@ -13,7 +13,7 @@ part 'certificates.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Certificates extends IdoCollection {
-  List<Certificate> certificates = List();
+  List<Certificate> certificates;
 
   Certificates(this.certificates, Links links, Meta meta) : super(links, meta);
 

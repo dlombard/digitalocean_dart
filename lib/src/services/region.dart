@@ -12,12 +12,12 @@ class RegionService extends DOService {
     var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
-    List<Region> _ = List();
+    var _ = List<Region>();
     for (dynamic item in data['regions']) {
       _.add(Region.fromJson(item));
     }
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Regions(_, collectionData['links'], collectionData['meta']);
   }
 }

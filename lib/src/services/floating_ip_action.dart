@@ -14,7 +14,7 @@ class FloatingIPActionService extends DOService {
     dynamic r = await client.execute('GET', path);
 
     List<Action> _ = _toList(r['actions']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(r);
+    var collectionData = client.getDOCollectionData(r);
 
     return Actions(_, collectionData['links'], collectionData['meta']);
   }
@@ -44,7 +44,7 @@ class FloatingIPActionService extends DOService {
   }
 
   List<Action> _toList(List<dynamic> data) {
-    List<Action> actions = List();
+    var actions = List<Action>();
     for (dynamic item in data) {
       actions.add(Action.fromJson(item));
     }

@@ -13,7 +13,7 @@ part 'project_resources.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class ProjectResources extends IdoCollection {
-  List<ProjectResource> projectResources = List();
+  List<ProjectResource> projectResources;
 
   ProjectResources(this.projectResources, Links links, Meta meta)
       : super(links, meta);

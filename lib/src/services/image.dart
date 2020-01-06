@@ -16,7 +16,7 @@ class ImageService extends DOService {
 
     dynamic data = await client.execute('GET', path);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Images(_toList(data['images']), collectionData['links'],
         collectionData['meta']);
   }
@@ -28,7 +28,7 @@ class ImageService extends DOService {
 
     dynamic data = await client.execute('GET', path);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Images(_toList(data['images']), collectionData['links'],
         collectionData['meta']);
   }
@@ -40,7 +40,7 @@ class ImageService extends DOService {
 
     dynamic data = await client.execute('GET', path);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Images(_toList(data['images']), collectionData['links'],
         collectionData['meta']);
   }
@@ -52,7 +52,7 @@ class ImageService extends DOService {
 
     dynamic data = await client.execute('GET', path);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Images(_toList(data['images']), collectionData['links'],
         collectionData['meta']);
   }
@@ -64,7 +64,7 @@ class ImageService extends DOService {
 
     dynamic data = await client.execute('GET', path);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Images(_toList(data['images']), collectionData['links'],
         collectionData['meta']);
   }
@@ -108,7 +108,7 @@ class ImageService extends DOService {
       [String distribution, String description]) async {
     var path = '$basePath/$imageId';
 
-    Map<String, dynamic> json = {
+    var json = {
       'name': name,
     };
     if (distribution != null) json['distribution'] = distribution;
@@ -124,9 +124,9 @@ class ImageService extends DOService {
     var path = '$basePath/$imageId/actions';
 
     dynamic data = await client.execute('GET', path);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
 
-    List<Action> _ = List();
+    var _ = List<Action>();
     for (dynamic item in data['actions']) {
       _.add(Action.fromJson(item));
     }
@@ -140,8 +140,9 @@ class ImageService extends DOService {
 
     return Image.fromJson(data['image']);
   }
+
   List<Image> _toList(List<dynamic> data) {
-    List<Image> _ = List();
+    var _ = List<Image>();
     for (dynamic item in data) {
       _.add(Image.fromJson(item));
     }

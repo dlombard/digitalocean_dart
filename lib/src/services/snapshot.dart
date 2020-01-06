@@ -21,9 +21,9 @@ class SnapshotService extends DOService {
     var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
-    List<Snapshot> _ = _toList(data['snapshots']);
+    var _ = _toList(data['snapshots']);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Snapshots(_, collectionData['links'], collectionData['meta']);
   }
 
@@ -33,9 +33,9 @@ class SnapshotService extends DOService {
     path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
-    List<Snapshot> _ = _toList(data['snapshots']);
+    var _ = _toList(data['snapshots']);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Snapshots(_, collectionData['links'], collectionData['meta']);
   }
 
@@ -45,9 +45,9 @@ class SnapshotService extends DOService {
     path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
-    List<Snapshot> _ = _toList(data['snapshots']);
+    var _ = _toList(data['snapshots']);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Snapshots(_, collectionData['links'], collectionData['meta']);
   }
 
@@ -58,7 +58,7 @@ class SnapshotService extends DOService {
   }
 
   List<Snapshot> _toList(List<dynamic> data) {
-    List<Snapshot> _ = List();
+    var _ = List<Snapshot>();
     for (dynamic item in data) {
       _.add(Snapshot.fromJson(item));
     }

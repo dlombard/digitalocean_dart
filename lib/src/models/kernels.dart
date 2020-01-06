@@ -13,7 +13,7 @@ part 'kernels.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Kernels extends IdoCollection {
-  List<Kernel> kernels = List();
+  List<Kernel> kernels;
 
   Kernels(this.kernels, Links links, Meta meta) : super(links, meta);
 

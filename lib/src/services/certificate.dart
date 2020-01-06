@@ -34,8 +34,8 @@ class CertificateService extends DOService {
 
     dynamic r = await client.execute('GET', path);
 
-    List<Certificate> certs = _toList(r['certificates']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(r);
+    var certs = _toList(r['certificates']);
+    var collectionData = client.getDOCollectionData(r);
 
     return Certificates(certs, collectionData['links'], collectionData['meta']);
   }
@@ -47,7 +47,7 @@ class CertificateService extends DOService {
   }
 
   List<Certificate> _toList(List<dynamic> data) {
-    List<Certificate> certs = List();
+    var certs = List<Certificate>();
     for (dynamic item in data) {
       certs.add(Certificate.fromJson(item));
     }

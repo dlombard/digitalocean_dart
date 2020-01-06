@@ -2,12 +2,13 @@ import './models/listOptions.dart';
 
 class Utils {
   static String getPathFromListOptions(ListOptions o, basePath) {
-    String path = basePath;
+    var path = basePath;
     if (o != null) {
-      if (!path.contains('?'))
+      if (!path.contains('?')) {
         path = path + '?' + o.toString();
-      else
+      } else {
         path + '&' + o.toString();
+      }
     }
 
     return path;

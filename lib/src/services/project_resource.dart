@@ -15,8 +15,8 @@ class ProjectResourceService extends DOService {
     var path = '$basePath/$projectId/resources';
     dynamic data = await client.execute('GET', path);
 
-    List<ProjectResource> _ = _toList(data[_fieldName]);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var _ = _toList(data[_fieldName]);
+    var collectionData = client.getDOCollectionData(data);
 
     return ProjectResources(_, collectionData['links'], collectionData['meta']);
   }
@@ -25,7 +25,7 @@ class ProjectResourceService extends DOService {
   Future<ProjectResource> assignResource(
       String projectId, List<Urn> urns) async {
     var path = '$basePath/$projectId/resources';
-    List<String> resources = List();
+    var resources = List<String>();
     for (Urn _ in urns) {
       resources.add(_.toString());
     }
@@ -39,8 +39,8 @@ class ProjectResourceService extends DOService {
   Future<ProjectResources> listDefaultProjectResources() async {
     var path = '$basePath/default/resources';
     dynamic data = await client.execute('GET', path);
-    List<ProjectResource> _ = _toList(data[_fieldName]);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var _ = _toList(data[_fieldName]);
+    var collectionData = client.getDOCollectionData(data);
 
     return ProjectResources(_, collectionData['links'], collectionData['meta']);
   }
@@ -51,14 +51,14 @@ class ProjectResourceService extends DOService {
     var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
-    List<ProjectResource> _ = _toList(data['ProjectResources']);
+    var _ = _toList(data['ProjectResources']);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return ProjectResources(_, collectionData['links'], collectionData['meta']);
   }
 
   List<ProjectResource> _toList(List<dynamic> data) {
-    List<ProjectResource> _ = List();
+    var _ = List<ProjectResource>();
     for (dynamic item in data) {
       _.add(ProjectResource.fromJson(item));
     }

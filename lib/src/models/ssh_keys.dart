@@ -13,7 +13,7 @@ part 'ssh_keys.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class SSHKeys extends IdoCollection {
-  List<SSHKey> sshKeys = List();
+  List<SSHKey> sshKeys;
 
   SSHKeys(this.sshKeys, Links links, Meta meta) : super(links, meta);
 

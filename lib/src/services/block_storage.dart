@@ -24,14 +24,14 @@ class BlockStorageService extends DOService {
       path = Utils.getPathFromListOptions(listOptions, path);
     }
     dynamic r = await client.execute('GET', path);
-    List<BlockStorage> bs = _toList(r[_FIELD_NAME + 's']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(r);
+    var bs = _toList(r[_FIELD_NAME + 's']);
+    var collectionData = client.getDOCollectionData(r);
 
     return BlockStorages(bs, collectionData['links'], collectionData['meta']);
   }
 
   List<BlockStorage> _toList(List<dynamic> data) {
-    List<BlockStorage> bs = List();
+    var bs = List<BlockStorage>();
     for (dynamic item in data) {
       bs.add(BlockStorage.fromJson(item));
     }
@@ -55,7 +55,7 @@ class BlockStorageService extends DOService {
 
   /// List snapshots for a volume
   Future<Snapshots> listSnapshots(String id) async {
-    List<Snapshot> snaps = List();
+    var snaps = List<Snapshot>();
     var path = basePath + '/' + id + '/snapshots';
 
     dynamic data = await client.execute('GET', path);
@@ -64,7 +64,7 @@ class BlockStorageService extends DOService {
       snaps.add(Snapshot.fromJson(item));
     }
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
 
     return Snapshots(snaps, collectionData['links'], collectionData['meta']);
   }

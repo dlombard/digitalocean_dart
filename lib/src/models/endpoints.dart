@@ -13,7 +13,7 @@ part 'endpoints.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Endpoints extends IdoCollection {
-  List<Endpoint> endpoints = List();
+  List<Endpoint> endpoints;
 
   Endpoints(this.endpoints, Links links, Meta meta) : super(links, meta);
 

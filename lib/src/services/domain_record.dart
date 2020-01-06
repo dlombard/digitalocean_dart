@@ -20,8 +20,8 @@ class DomainRecordService extends DOService {
 
     dynamic r = await client.execute('GET', path);
 
-    List<DomainRecord> _ = _toList(r['domain_records']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(r);
+    var _ = _toList(r['domain_records']);
+    var collectionData = client.getDOCollectionData(r);
 
     return DomainRecords(_, collectionData['links'], collectionData['meta']);
   }
@@ -64,7 +64,7 @@ class DomainRecordService extends DOService {
   }
 
   List<DomainRecord> _toList(List<dynamic> data) {
-    List<DomainRecord> drs = List();
+    var drs = List<DomainRecord>();
     for (dynamic item in data) {
       drs.add(DomainRecord.fromJson(item));
     }

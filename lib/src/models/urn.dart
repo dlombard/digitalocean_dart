@@ -22,6 +22,6 @@ class Urn {
 
   @override
   String toString() {
-    return "do:$resource_type:$resource_id";
+    return 'do:$resource_type:$resource_id';
   }
 }

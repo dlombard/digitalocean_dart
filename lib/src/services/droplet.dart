@@ -34,7 +34,7 @@ class DropletService extends DOService {
 
   /// Retrieves an existing Droplet by id
   Future<Droplet> get(int dropletId) async {
-    String path = '$basePath/$dropletId';
+    var path = '$basePath/$dropletId';
 
     dynamic data = await client.execute('GET', path);
 
@@ -43,86 +43,86 @@ class DropletService extends DOService {
 
   /// Lists All Droplets
   Future<Droplets> list([ListOptions op]) async {
-    String path = Utils.getPathFromListOptions(op, basePath);
+    var path = Utils.getPathFromListOptions(op, basePath);
     return _getList(path);
   }
 
   /// Lists Droplets by Tag
   Future<Droplets> listByTag(String tagName, [ListOptions op]) async {
-    String path = '$basePath?tag_name=$tagName';
+    var path = '$basePath?tag_name=$tagName';
     path = Utils.getPathFromListOptions(op, path);
     return _getList(path);
   }
 
   /// Lists all available Kernels for a Droplet
   Future<Kernels> kernels(int dropletId, [ListOptions op]) async {
-    String path = '$basePath/$dropletId/kernels';
+    var path = '$basePath/$dropletId/kernels';
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
-    List<Kernel> kernels = List();
+    var kernels = List<Kernel>();
     for (dynamic item in data['kernels']) {
       kernels.add(Kernel.fromJson(item));
     }
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
 
     return Kernels(kernels, collectionData['links'], collectionData['meta']);
   }
 
   /// Lists snapshots for a Droplet
   Future<Snapshots> snapshots(int dropletId, [ListOptions op]) async {
-    String path = '$basePath/$dropletId/snapshots';
+    var path = '$basePath/$dropletId/snapshots';
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
-    List<Snapshot> _ = List();
+    var _ = List<Snapshot>();
     for (dynamic item in data['snapshots']) {
       _.add(Snapshot.fromJson(item));
     }
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
 
     return Snapshots(_, collectionData['links'], collectionData['meta']);
   }
 
   /// Lists backups for a Droplet
   Future<Backups> backups(int dropletId, [ListOptions op]) async {
-    String path = '$basePath/$dropletId/backups';
+    var path = '$basePath/$dropletId/backups';
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
-    List<Backup> _ = List();
+    var _ = List<Backup>();
     for (dynamic item in data['backups']) {
       _.add(Backup.fromJson(item));
     }
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
 
     return Backups(_, collectionData['links'], collectionData['meta']);
   }
 
   /// Lists actions for a Droplet
   Future<Actions> actions(int dropletId, [ListOptions op]) async {
-    String path = '$basePath/$dropletId/actions';
+    var path = '$basePath/$dropletId/actions';
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
-    List<Action> _ = List();
+    var _ = List<Action>();
     for (dynamic item in data['actions']) {
       _.add(Action.fromJson(item));
     }
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
 
     return Actions(_, collectionData['links'], collectionData['meta']);
   }
 
   ///Deletes a droplet
   Future<void> delete(int dropletId) async {
-    String path = '$basePath/$dropletId';
+    var path = '$basePath/$dropletId';
     await client.execute('DELETE', path);
   }
 
   /// Deletes droplets by tag
   Future<void> deleteByTag(String tagName) async {
-    String path = '$basePath?tag_name=$tagName';
+    var path = '$basePath?tag_name=$tagName';
     await client.execute('DELETE', path);
   }
 
@@ -130,32 +130,32 @@ class DropletService extends DOService {
   Future<Droplets> lisDropletNeighbors(
     int dropletId,
   ) async {
-    String path = '$basePath/$dropletId/neighbors';
+    var path = '$basePath/$dropletId/neighbors';
     dynamic data = await client.execute('GET', path);
 
-    List<Droplet> droplets = _toDropletList(data['droplets']);
+    var droplets = _toDropletList(data['droplets']);
 
     return Droplets(droplets, null, null);
   }
 
   /* /// Lists Neighbors running on the same physical hardware
   Future<Droplets> listAllNeighbors() async {
-    String path = '/v2/reports/neighbors';
+    var path = '/v2/reports/neighbors';
     return _getList(path);
   }*/
 
-  Future<Droplets> _getList(String path, [String method = 'GET']) async {
+  Future<Droplets> _getList(var path, [String method = 'GET']) async {
     dynamic data = await client.execute(method, path);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
 
-    List<Droplet> droplets = _toDropletList(data['droplets']);
+    var droplets = _toDropletList(data['droplets']);
 
     return Droplets(droplets, collectionData['links'], collectionData['meta']);
   }
 
   List<Droplet> _toDropletList(List<dynamic> data) {
-    List<Droplet> droplets = List();
+    var droplets = List<Droplet>();
     for (dynamic item in data) {
       droplets.add(Droplet.fromJson(item));
     }

@@ -12,8 +12,8 @@ class FloatingIPService extends DOService {
     var path = Utils.getPathFromListOptions(ops, basePath);
     dynamic r = await client.execute('GET', path);
 
-    List<FloatingIP> es = _toList(r['floating_ips']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(r);
+    var es = _toList(r['floating_ips']);
+    var collectionData = client.getDOCollectionData(r);
 
     return FloatingIPs(es, collectionData['links'], collectionData['meta']);
   }
@@ -45,7 +45,7 @@ class FloatingIPService extends DOService {
   }
 
   List<FloatingIP> _toList(List<dynamic> data) {
-    List<FloatingIP> ips = List();
+    var ips = List<FloatingIP>();
     for (dynamic item in data) {
       ips.add(FloatingIP.fromJson(item));
     }

@@ -8,7 +8,6 @@ environment:
 
 dependencies:
   json_annotation: ^3.0.0
-  dio: ^3.0.0
   dotenv: ^2.0.0
 
 dev_dependencies:

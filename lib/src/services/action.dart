@@ -22,14 +22,14 @@ class ActionService extends DOService {
 
     dynamic r = await client.execute('GET', path);
 
-    List<Action> actions = _toList(r[_FIELD_NAME]);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(r);
+    var actions = _toList(r[_FIELD_NAME]);
+    var collectionData = client.getDOCollectionData(r);
 
     return Actions(actions, collectionData['links'], collectionData['meta']);
   }
 
   List<Action> _toList(List<dynamic> data) {
-    List<Action> actions = List();
+    var actions = List<Action>();
     for (dynamic item in data) {
       actions.add(Action.fromJson(item));
     }

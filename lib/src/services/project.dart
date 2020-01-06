@@ -12,9 +12,9 @@ class ProjectService extends DOService {
   /// [purpose]: The purpose of the project. The maximum length is 255 characters. For examples of valid purposes, see the 'Purpose' class or pass a random string
   Future<Project> create(String name, String purpose,
       [String description, Environment environment]) async {
-    Map<String, dynamic> json = {'name': name, 'purpose': purpose};
+    var json = {'name': name, 'purpose': purpose};
     if (description != null) json['description'] = description;
-    if (environment != null) json['environment'] = environment;
+    if (environment != null) json['environment'] = environment.toString();
 
     dynamic data = await client.execute('POST', basePath, json: json);
 
@@ -26,7 +26,7 @@ class ProjectService extends DOService {
     var path = Utils.getPathFromListOptions(ops, basePath);
 
     dynamic data = await client.execute('GET', path);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
 
     return Projects(_toList(data['projects']), collectionData['links'],
         collectionData['meta']);
@@ -37,7 +37,7 @@ class ProjectService extends DOService {
       String purpose, bool is_default,
       [Environment e]) async {
     var path = '$basePath/$projectId';
-    Map<String, dynamic> json = {
+    var json = {
       'name': name,
       'description': description,
       'purpose': purpose,
@@ -55,7 +55,7 @@ class ProjectService extends DOService {
       String purpose, bool is_default,
       [Environment e]) async {
     var path = '$basePath/$projectId';
-    Map<String, dynamic> json = {
+    var json = {
       'name': name,
       'description': description,
       'purpose': purpose,
@@ -91,7 +91,7 @@ class ProjectService extends DOService {
       String name, String description, String purpose, bool is_default,
       [Environment e]) async {
     var path = '$basePath/default';
-    Map<String, dynamic> json = {
+    var json = {
       'name': name,
       'description': description,
       'purpose': purpose,
@@ -109,7 +109,7 @@ class ProjectService extends DOService {
       String name, String description, String purpose, bool is_default,
       [Environment e]) async {
     var path = '$basePath/default';
-    Map<String, dynamic> json = {
+    var json = {
       'name': name,
       'description': description,
       'purpose': purpose,
@@ -123,7 +123,7 @@ class ProjectService extends DOService {
   }
 
   List<Project> _toList(List<dynamic> data) {
-    List<Project> _ = List();
+    var _ = List<Project>();
     for (dynamic item in data) {
       _.add(Project.fromJson(item));
     }

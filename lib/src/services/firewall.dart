@@ -27,8 +27,8 @@ class FirewallService extends DOService {
 
   Future<Firewalls> list() async {
     dynamic data = await client.execute('GET', basePath);
-    List<Firewall> firewalls = _toList(data['firewalls']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var firewalls = _toList(data['firewalls']);
+    var collectionData = client.getDOCollectionData(data);
 
     return Firewalls(
         firewalls, collectionData['links'], collectionData['meta']);
@@ -101,7 +101,7 @@ class FirewallService extends DOService {
   }
 
   List<Firewall> _toList(List<dynamic> data) {
-    List<Firewall> _ = List();
+    var _ = List<Firewall>();
     for (dynamic item in data) {
       _.add(Firewall.fromJson(item));
     }
@@ -112,10 +112,10 @@ class FirewallService extends DOService {
 @JsonSerializable()
 class FirewallCreateRequest {
   String name;
-  List<InboundRule> inbound_rules = List();
-  List<OutboundRule> outbound_rules = List();
-  List<int> dropletIds = List();
-  List<String> tags = List();
+  List<InboundRule> inbound_rules;
+  List<OutboundRule> outbound_rules;
+  List<int> dropletIds;
+  List<String> tags;
 
   FirewallCreateRequest(this.name, this.inbound_rules, this.outbound_rules,
       [this.dropletIds, this.tags]);
@@ -128,10 +128,10 @@ class FirewallCreateRequest {
 @JsonSerializable()
 class FirewallUpdateRequest {
   String name;
-  List<InboundRule> inbound_rules = List();
-  List<OutboundRule> outbound_rules = List();
-  List<int> dropletIds = List();
-  List<String> tags = List();
+  List<InboundRule> inbound_rules;
+  List<OutboundRule> outbound_rules;
+  List<int> dropletIds;
+  List<String> tags;
 
   FirewallUpdateRequest(this.name, this.inbound_rules, this.outbound_rules,
       [this.dropletIds, this.tags]);

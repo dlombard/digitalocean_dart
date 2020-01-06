@@ -13,7 +13,7 @@ part 'firewalls.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Firewalls extends IdoCollection {
-  List<Firewall> firewalls = List();
+  List<Firewall> firewalls;
 
   Firewalls(this.firewalls, Links links, Meta meta) : super(links, meta);
 

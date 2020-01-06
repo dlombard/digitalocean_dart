@@ -17,8 +17,8 @@ class DomainService extends DOService {
 
     dynamic r = await client.execute('GET', path);
 
-    List<Domain> _ = _toList(r['domains']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(r);
+    var _ = _toList(r['domains']);
+    var collectionData = client.getDOCollectionData(r);
 
     return Domains(_, collectionData['links'], collectionData['meta']);
   }
@@ -26,7 +26,7 @@ class DomainService extends DOService {
   /// Create a new Domain
   ///
   Future<Domain> create(String name, {String ip_address}) async {
-    Map<String, dynamic> json = {'name': name};
+    var json = {'name': name};
     if (ip_address != null) json['ip_address'] = ip_address;
     dynamic data = await client.execute('POST', basePath, json: json);
 
@@ -50,7 +50,7 @@ class DomainService extends DOService {
   }
 
   List<Domain> _toList(List<dynamic> data) {
-    List<Domain> domains = List();
+    var domains = List<Domain>();
     for (dynamic item in data) {
       domains.add(Domain.fromJson(item));
     }

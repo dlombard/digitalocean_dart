@@ -12,21 +12,23 @@ class DigitalOceanException implements Exception {
     var j;
     try {
       j = jsonDecode(message);
-    } catch (e) {}
+    } catch (e) {
+      j = null;
+    }
     if (j != null) {
-      this.id = j['id'];
+      id = j['id'];
     }
   }
 
   @override
   String toString() {
     Map<String, String> errorString = {
-      "message": this.message,
-      "statusCode": this.statusCode.toString()
+      'message': message,
+      'statusCode': statusCode.toString()
     };
-    if (this.id.isNotEmpty) errorString['id'] = this.id;
-    if (this.data != null) errorString['data'] = this.data;
-    if (this.uri.isNotEmpty) errorString['uri'] = this.uri;
+    if (id != null) errorString['id'] = id;
+    if (data != null) errorString['data'] = data;
+    if (uri.isNotEmpty) errorString['uri'] = uri;
 
     return errorString.toString();
   }

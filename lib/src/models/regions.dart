@@ -13,7 +13,7 @@ part 'regions.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Regions extends IdoCollection {
-  List<Region> regions = List();
+  List<Region> regions;
 
   Regions(this.regions, Links links, Meta meta) : super(links, meta);
 

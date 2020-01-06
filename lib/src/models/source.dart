@@ -9,10 +9,10 @@ part 'source.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Source {
-  List<String> addresses = List();
-  List<int> droplet_ids = List();
-  List<String> load_balancer_uids = List();
-  List<String> tags = List();
+  List<String> addresses;
+  List<int> droplet_ids;
+  List<String> load_balancer_uids;
+  List<String> tags;
 
   Source(this.addresses, this.droplet_ids, this.load_balancer_uids, this.tags);
 

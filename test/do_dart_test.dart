@@ -10,7 +10,6 @@ void main() {
   String bsId;
   String volumeName = 'doDartTestVol1';
   Snapshot snap;
-  int imageId = 53893572;
 /*
  This test creates a droplet and a volume. 
  Once this is done, we test multiple api endpoints
@@ -43,6 +42,7 @@ void main() {
   });
 
   tearDownAll(() async {
+    if (snap != null) await client.image.delete(snap.id);
     // Delete droplets
     await client.droplet.delete(d.id);
     if (ds != null) {
@@ -52,8 +52,6 @@ void main() {
     }
 
     if (bsId != null) await client.blockStorage.delete(bsId);
-
-    if (snap != null) await client.image.delete(snap.id);
   });
 
   group('Droplets', () {

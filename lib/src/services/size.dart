@@ -12,12 +12,12 @@ class SizeService extends DOService {
     var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
-    List<Size> _ = List();
+    var _ = List<Size>();
     for (dynamic item in data['sizes']) {
       _.add(Size.fromJson(item));
     }
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return Sizes(_, collectionData['links'], collectionData['meta']);
   }
 }

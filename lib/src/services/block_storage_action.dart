@@ -11,7 +11,7 @@ class BlockStorageActionService extends DOService {
   Future<Action> attach(String volumeId, int dropletId, {String region}) async {
     var type = 'attach';
 
-    Map<String, dynamic> requestObj = {
+    var requestObj = {
       'type': type,
       'droplet_id': dropletId,
     };
@@ -23,7 +23,7 @@ class BlockStorageActionService extends DOService {
   /// Remove a Block Storage volume from a Droplet
   Future<Action> detach(String volumeId, int dropletId, {String region}) {
     var type = 'detach';
-    Map<String, dynamic> requestObj = {
+    var requestObj = {
       'type': type,
       'droplet_id': dropletId,
     };
@@ -35,7 +35,7 @@ class BlockStorageActionService extends DOService {
   /// Resize a volume
   Future<Action> resize(String volumeId, int sizeGigabytes, {String region}) {
     var type = 'resize';
-    Map<String, dynamic> requestObj = {
+    var requestObj = {
       'type': type,
       'size_gigabytes': sizeGigabytes,
     };
@@ -48,8 +48,8 @@ class BlockStorageActionService extends DOService {
     var path = basePath + '/' + volumeId + '/actions';
     dynamic data = await client.execute('GET', path);
 
-    List<Action> actions = _toList(data['actions']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var actions = _toList(data['actions']);
+    var collectionData = client.getDOCollectionData(data);
 
     return Actions(actions, collectionData['links'], collectionData['meta']);
   }
@@ -73,7 +73,7 @@ class BlockStorageActionService extends DOService {
   }
 
   List<Action> _toList(List<dynamic> data) {
-    List<Action> actions = List();
+    var actions = List<Action>();
     for (dynamic item in data) {
       actions.add(Action.fromJson(item));
     }

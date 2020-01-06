@@ -13,7 +13,7 @@ part 'sizes.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Sizes extends IdoCollection {
-  List<Size> sizes = List();
+  List<Size> sizes;
 
   Sizes(this.sizes, Links links, Meta meta) : super(links, meta);
 

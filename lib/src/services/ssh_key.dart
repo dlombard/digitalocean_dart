@@ -36,9 +36,9 @@ class SSHKeyService extends DOService {
     var path = Utils.getPathFromListOptions(op, basePath);
 
     dynamic data = await client.execute('GET', path);
-    List<SSHKey> _ = _toList(data['SSHKeys']);
+    var _ = _toList(data['SSHKeys']);
 
-    Map<String, dynamic> collectionData = client.getDOCollectionData(data);
+    var collectionData = client.getDOCollectionData(data);
     return SSHKeys(_, collectionData['links'], collectionData['meta']);
   }
 
@@ -49,7 +49,7 @@ class SSHKeyService extends DOService {
   }
 
   List<SSHKey> _toList(List<dynamic> data) {
-    List<SSHKey> _ = List();
+    var _ = List<SSHKey>();
     for (dynamic item in data) {
       _.add(SSHKey.fromJson(item));
     }

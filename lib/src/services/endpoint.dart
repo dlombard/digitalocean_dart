@@ -38,8 +38,8 @@ class EndpointService extends DOService {
 
     dynamic r = await client.execute('GET', path);
 
-    List<Endpoint> es = _toList(r[_FIELD_NAME + 's']);
-    Map<String, dynamic> collectionData = client.getDOCollectionData(r);
+    var es = _toList(r[_FIELD_NAME + 's']);
+    var collectionData = client.getDOCollectionData(r);
 
     return Endpoints(es, collectionData['links'], collectionData['meta']);
   }
@@ -69,7 +69,7 @@ class EndpointService extends DOService {
   }
 
   List<Endpoint> _toList(List<dynamic> data) {
-    List<Endpoint> endpoints = List();
+    var endpoints = List<Endpoint>();
     for (dynamic item in data) {
       endpoints.add(Endpoint.fromJson(item));
     }

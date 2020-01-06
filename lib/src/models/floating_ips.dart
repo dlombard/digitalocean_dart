@@ -13,7 +13,7 @@ part 'floating_ips.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class FloatingIPs extends IdoCollection {
-  List<FloatingIP> ips = List();
+  List<FloatingIP> ips;
   FloatingIPs(this.ips, Links links, Meta meta) : super(links, meta);
 
   factory FloatingIPs.fromJson(Map<String, dynamic> json) =>

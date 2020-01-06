@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:do_dart/do_dart.dart';
 import 'dart:convert';
 import 'services/account.dart';
@@ -62,7 +61,7 @@ class Client {
   String userAgent;
 
   Client(this._api_token) {
-    this.userAgent = 'dodart/' + libraryVersion;
+    userAgent = 'dodart/' + libraryVersion;
     buildClient();
     account = AccountService(this);
     action = ActionService(this);
@@ -96,14 +95,15 @@ class Client {
     try {
       var params = path.split('?');
       var uri;
-      if (params.length == 1)
+      if (params.length == 1) {
         uri = Uri(scheme: 'https', host: 'api.digitalocean.com', path: path);
-      else
+      } else {
         uri = Uri(
             scheme: 'https',
             host: 'api.digitalocean.com',
             path: params.elementAt(0),
             query: params.elementAt(1));
+      }
 
       switch (method.toUpperCase()) {
         case 'DELETE':
@@ -112,28 +112,32 @@ class Client {
           );
           break;
         case 'GET':
-          if (json != null)
+          if (json != null) {
             return executeRequest(await _client.getUrl(uri), json: json);
-          else
+          } else {
             return executeRequest(await _client.getUrl(uri));
+          }
           break;
         case 'PATCH':
-          if (json != null)
+          if (json != null) {
             return executeRequest(await _client.patchUrl(uri), json: json);
-          else
+          } else {
             return executeRequest(await _client.patchUrl(uri));
+          }
           break;
         case 'POST':
-          if (json != null)
+          if (json != null) {
             return executeRequest(await _client.postUrl(uri), json: json);
-          else
+          } else {
             return executeRequest(await _client.postUrl(uri));
+          }
           break;
         case 'PUT':
-          if (json != null)
+          if (json != null) {
             return executeRequest(await _client.putUrl(uri), json: json);
-          else
+          } else {
             return executeRequest(await _client.putUrl(uri));
+          }
           break;
         default:
           break;
@@ -152,13 +156,13 @@ class Client {
   Future<dynamic> executeRequest(HttpClientRequest request,
       {Map<String, dynamic> json}) async {
     request.headers.contentType =
-        new ContentType("application", "json", charset: "utf-8");
-    request.headers.add('Authorization', 'Bearer ' + this._api_token);
+        ContentType('application', 'json', charset: 'utf-8');
+    request.headers.add('Authorization', 'Bearer ' + _api_token);
     request.headers.add('User-Agent', userAgent);
 
     if (json != null) request.write(jsonEncode(json));
 
-    HttpClientResponse response = await request.close();
+    var response = await request.close();
     var completer = Completer<String>();
 
     var sink = StringConversionSink.withCallback((s) => completer.complete(s));
@@ -171,17 +175,18 @@ class Client {
     var body = await completer.future;
 
     if (response.statusCode >= 400) {
-      throw new DigitalOceanException(body, response.statusCode,
+      throw DigitalOceanException(body, response.statusCode,
           uri: request.uri.toString());
     }
     if (body.isNotEmpty) {
       return jsonDecode(body);
-    } else
+    } else {
       return body;
+    }
   }
 
   Map<String, dynamic> getDOCollectionData(dynamic responseData) {
-    Map<String, dynamic> res = {
+    var res = {
       'links': _getLinks(responseData),
       'meta': _getMeta(responseData)
     };

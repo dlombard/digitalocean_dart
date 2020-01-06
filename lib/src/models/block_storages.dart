@@ -13,7 +13,7 @@ part 'block_storages.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class BlockStorages extends IdoCollection {
-  List<BlockStorage> blockStorages = List();
+  List<BlockStorage> blockStorages;
 
   BlockStorages(this.blockStorages, Links links, Meta meta)
       : super(links, meta);

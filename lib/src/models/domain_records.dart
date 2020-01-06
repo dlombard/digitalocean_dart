@@ -13,7 +13,7 @@ part 'domain_records.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class DomainRecords extends IdoCollection {
-  List<DomainRecord> drs = List();
+  List<DomainRecord> drs;
 
   DomainRecords(this.drs, Links links, Meta meta) : super(links, meta);
 

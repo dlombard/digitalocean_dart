@@ -5,8 +5,8 @@ class ListOptions {
 
   @override
   String toString() {
-    String s = "$page";
-    if (this.perPage != null) s = s + "&$perPage";
+    var s = '$page';
+    if (perPage != null) s = s + '&$perPage';
 
     return s;
   }

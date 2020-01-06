@@ -13,7 +13,7 @@ part 'images.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class Images extends IdoCollection {
-  List<Image> images = List();
+  List<Image> images;
 
   Images(this.images, Links links, Meta meta) : super(links, meta);
 
