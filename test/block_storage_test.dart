@@ -47,7 +47,7 @@ void main() {
       expect(snaps, isNotNull);
     });
     test('CreateSnapshots', () async {
-      Snapshot snap = await client.blockStorage.createSnapshot(bsId, 'Nsnap');
+      Snapshot snap = await client.blockStorage.createSnapshot(bsId, 'bsid');
       expect(snap, isNotNull);
     });
   });
