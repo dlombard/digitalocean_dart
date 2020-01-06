@@ -50,7 +50,7 @@ class DomainService extends DOService {
   }
 
   List<Domain> _toList(List<dynamic> data) {
-    var domains = List<Domain>();
+    var domains = <Domain>[];
     for (dynamic item in data) {
       domains.add(Domain.fromJson(item));
     }

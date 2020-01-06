@@ -14,7 +14,7 @@ class EndpointService extends DOService {
   /// [origin]: The fully qualified domain name (FQDN) for the origin server which the provides the content for the CDN. This is currently restricted to a Space
   /// [ttl]: _Optional_ The amount of time the content is cached by the CDN's edge servers in seconds. Defaults to 3600 (one hour) when excluded.
   Future<Endpoint> create(String origin, {int ttl}) async {
-    Map<String, dynamic> json = {'origin': origin};
+    var json = <String, dynamic>{'origin': origin};
     if (ttl != null) json['ttl'] = ttl;
 
     dynamic data = await client.execute('POST', basePath, json: json);
@@ -69,7 +69,7 @@ class EndpointService extends DOService {
   }
 
   List<Endpoint> _toList(List<dynamic> data) {
-    var endpoints = List<Endpoint>();
+    var endpoints = <Endpoint>[];
     for (dynamic item in data) {
       endpoints.add(Endpoint.fromJson(item));
     }

@@ -31,7 +31,7 @@ class BlockStorageService extends DOService {
   }
 
   List<BlockStorage> _toList(List<dynamic> data) {
-    var bs = List<BlockStorage>();
+    var bs = <BlockStorage>[];
     for (dynamic item in data) {
       bs.add(BlockStorage.fromJson(item));
     }
@@ -55,7 +55,7 @@ class BlockStorageService extends DOService {
 
   /// List snapshots for a volume
   Future<Snapshots> listSnapshots(String id) async {
-    var snaps = List<Snapshot>();
+    var snaps = <Snapshot>[];
     var path = basePath + '/' + id + '/snapshots';
 
     dynamic data = await client.execute('GET', path);

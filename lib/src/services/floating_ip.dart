@@ -45,7 +45,7 @@ class FloatingIPService extends DOService {
   }
 
   List<FloatingIP> _toList(List<dynamic> data) {
-    var ips = List<FloatingIP>();
+    var ips = <FloatingIP>[];
     for (dynamic item in data) {
       ips.add(FloatingIP.fromJson(item));
     }

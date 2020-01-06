@@ -47,7 +47,7 @@ class CertificateService extends DOService {
   }
 
   List<Certificate> _toList(List<dynamic> data) {
-    var certs = List<Certificate>();
+    var certs = <Certificate>[];
     for (dynamic item in data) {
       certs.add(Certificate.fromJson(item));
     }

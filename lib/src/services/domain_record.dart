@@ -64,7 +64,7 @@ class DomainRecordService extends DOService {
   }
 
   List<DomainRecord> _toList(List<dynamic> data) {
-    var drs = List<DomainRecord>();
+    var drs = <DomainRecord>[];
     for (dynamic item in data) {
       drs.add(DomainRecord.fromJson(item));
     }

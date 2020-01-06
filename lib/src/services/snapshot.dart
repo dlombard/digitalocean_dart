@@ -58,7 +58,7 @@ class SnapshotService extends DOService {
   }
 
   List<Snapshot> _toList(List<dynamic> data) {
-    var _ = List<Snapshot>();
+    var _ = <Snapshot>[];
     for (dynamic item in data) {
       _.add(Snapshot.fromJson(item));
     }

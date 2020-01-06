@@ -22,7 +22,7 @@ class DigitalOceanException implements Exception {
 
   @override
   String toString() {
-    Map<String, String> errorString = {
+    var errorString = <String, String>{
       'message': message,
       'statusCode': statusCode.toString()
     };

@@ -101,7 +101,7 @@ class FirewallService extends DOService {
   }
 
   List<Firewall> _toList(List<dynamic> data) {
-    var _ = List<Firewall>();
+    var _ = <Firewall>[];
     for (dynamic item in data) {
       _.add(Firewall.fromJson(item));
     }

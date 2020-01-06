@@ -72,7 +72,7 @@ class ImageService extends DOService {
   /// Create a Custom Image
   Future<Image> create(String name, String url, String region,
       [String distribution, String description, List<String> tags]) async {
-    Map<String, dynamic> json = {
+    var json = <String, dynamic>{
       'name': name,
       'url': url,
       'region': region,
@@ -126,7 +126,7 @@ class ImageService extends DOService {
     dynamic data = await client.execute('GET', path);
     var collectionData = client.getDOCollectionData(data);
 
-    var _ = List<Action>();
+    var _ = <Action>[];
     for (dynamic item in data['actions']) {
       _.add(Action.fromJson(item));
     }
@@ -142,7 +142,7 @@ class ImageService extends DOService {
   }
 
   List<Image> _toList(List<dynamic> data) {
-    var _ = List<Image>();
+    var _ = <Image>[];
     for (dynamic item in data) {
       _.add(Image.fromJson(item));
     }

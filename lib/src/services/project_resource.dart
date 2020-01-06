@@ -25,8 +25,8 @@ class ProjectResourceService extends DOService {
   Future<ProjectResource> assignResource(
       String projectId, List<Urn> urns) async {
     var path = '$basePath/$projectId/resources';
-    var resources = List<String>();
-    for (Urn _ in urns) {
+    var resources = <String>[];
+    for (var _ in urns) {
       resources.add(_.toString());
     }
     dynamic data =
@@ -58,7 +58,7 @@ class ProjectResourceService extends DOService {
   }
 
   List<ProjectResource> _toList(List<dynamic> data) {
-    var _ = List<ProjectResource>();
+    var _ = <ProjectResource>[];
     for (dynamic item in data) {
       _.add(ProjectResource.fromJson(item));
     }

@@ -71,7 +71,7 @@ class DropletActionService extends DOService {
   Future<Action> resize(int dropletId, String size, [bool increaseDiskSize]) {
     var type = 'resize';
     var path = '$basePath/$dropletId/actions';
-    Map<String, dynamic> json = {'type': type, 'size': size};
+    var json = <String, dynamic>{'type': type, 'size': size};
     if (increaseDiskSize != null) json['disk'] = increaseDiskSize;
     return execute(path, json);
   }

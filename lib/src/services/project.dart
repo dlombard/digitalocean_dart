@@ -12,7 +12,7 @@ class ProjectService extends DOService {
   /// [purpose]: The purpose of the project. The maximum length is 255 characters. For examples of valid purposes, see the 'Purpose' class or pass a random string
   Future<Project> create(String name, String purpose,
       [String description, Environment environment]) async {
-    var json = {'name': name, 'purpose': purpose};
+    var json = <String, dynamic>{'name': name, 'purpose': purpose};
     if (description != null) json['description'] = description;
     if (environment != null) json['environment'] = environment.toString();
 
@@ -37,7 +37,7 @@ class ProjectService extends DOService {
       String purpose, bool is_default,
       [Environment e]) async {
     var path = '$basePath/$projectId';
-    var json = {
+    var json = <String, dynamic>{
       'name': name,
       'description': description,
       'purpose': purpose,
@@ -55,7 +55,7 @@ class ProjectService extends DOService {
       String purpose, bool is_default,
       [Environment e]) async {
     var path = '$basePath/$projectId';
-    var json = {
+    var json = <String, dynamic>{
       'name': name,
       'description': description,
       'purpose': purpose,
@@ -109,7 +109,7 @@ class ProjectService extends DOService {
       String name, String description, String purpose, bool is_default,
       [Environment e]) async {
     var path = '$basePath/default';
-    var json = {
+    var json = <String, dynamic>{
       'name': name,
       'description': description,
       'purpose': purpose,
@@ -123,7 +123,7 @@ class ProjectService extends DOService {
   }
 
   List<Project> _toList(List<dynamic> data) {
-    var _ = List<Project>();
+    var _ = <Project>[];
     for (dynamic item in data) {
       _.add(Project.fromJson(item));
     }

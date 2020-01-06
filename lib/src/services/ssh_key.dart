@@ -49,7 +49,7 @@ class SSHKeyService extends DOService {
   }
 
   List<SSHKey> _toList(List<dynamic> data) {
-    var _ = List<SSHKey>();
+    var _ = <SSHKey>[];
     for (dynamic item in data) {
       _.add(SSHKey.fromJson(item));
     }

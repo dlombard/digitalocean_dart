@@ -60,7 +60,7 @@ class DropletService extends DOService {
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
-    var kernels = List<Kernel>();
+    var kernels = <Kernel>[];
     for (dynamic item in data['kernels']) {
       kernels.add(Kernel.fromJson(item));
     }
@@ -75,7 +75,7 @@ class DropletService extends DOService {
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
-    var _ = List<Snapshot>();
+    var _ = <Snapshot>[];
     for (dynamic item in data['snapshots']) {
       _.add(Snapshot.fromJson(item));
     }
@@ -90,7 +90,7 @@ class DropletService extends DOService {
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
-    var _ = List<Backup>();
+    var _ = <Backup>[];
     for (dynamic item in data['backups']) {
       _.add(Backup.fromJson(item));
     }
@@ -105,7 +105,7 @@ class DropletService extends DOService {
     path = Utils.getPathFromListOptions(op, path);
     dynamic data = await client.execute('GET', path);
 
-    var _ = List<Action>();
+    var _ = <Action>[];
     for (dynamic item in data['actions']) {
       _.add(Action.fromJson(item));
     }
@@ -155,7 +155,7 @@ class DropletService extends DOService {
   }
 
   List<Droplet> _toDropletList(List<dynamic> data) {
-    var droplets = List<Droplet>();
+    var droplets = <Droplet>[];
     for (dynamic item in data) {
       droplets.add(Droplet.fromJson(item));
     }
