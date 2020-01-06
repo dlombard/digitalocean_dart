@@ -133,6 +133,13 @@ class ImageService extends DOService {
     return Actions(_, collectionData['links'], collectionData['meta']);
   }
 
+  /// Delete an existing Image by id
+  Future<void> delete(String imageId) async {
+    var path = '$basePath/$imageId';
+    dynamic data = await client.execute('DELETE', path);
+
+    return Image.fromJson(data['image']);
+  }
   List<Image> _toList(List<dynamic> data) {
     List<Image> _ = List();
     for (dynamic item in data) {
