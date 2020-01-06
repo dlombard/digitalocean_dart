@@ -1,3 +1,7 @@
+## [0.1.5]
+- Fixed formatting
+- Remove unnecessary type annotations
+
 ## [0.1.4]
 - Move HTTP client to dart:io package
 - Type inference fix
