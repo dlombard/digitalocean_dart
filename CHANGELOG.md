@@ -1,3 +1,7 @@
+## [0.1.6]
+- Fixed collection literals (formatting)
+
+
 ## [0.1.5]
 - Fixed formatting
 - Remove unnecessary type annotations
