@@ -1,3 +1,6 @@
+## [0.1.7]
+- Fixed github issue #3
+
 ## [0.1.6]
 - Fixed collection literals (formatting)
 

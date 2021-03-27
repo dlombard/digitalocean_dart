@@ -1,6 +1,6 @@
 name: do_dart
 description: do_dart is an implementation of the digitalocean api which can be used on mobile, web or server
-version: 0.1.6
+version: 0.1.7
 homepage: https://github.com/dlombard/digitalocean_dart
 
 environment:
