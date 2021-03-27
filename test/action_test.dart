@@ -16,7 +16,11 @@ void main() {
 
   group('Action', () {
     test('listActions', () async {
-      expect(await client.action.list(), isNotNull);
+      var lo = new ListOptions(2, perPage: 25);
+      print(lo.toString());
+      var _ = await client.action.list(listOptions: lo);
+      print(_.links.pages.toJson());
+      expect(_, isNotNull);
     });
 
     test('getActions', () async {
