@@ -8,22 +8,18 @@ part of 'block_storages.dart';
 
 BlockStorages _$BlockStoragesFromJson(Map<String, dynamic> json) {
   return BlockStorages(
-      (json['blockStorages'] as List)
-          ?.map((e) => e == null
-              ? null
-              : BlockStorage.fromJson(e as Map<String, dynamic>))
-          ?.toList(),
-      json['links'] == null
-          ? null
-          : Links.fromJson(json['links'] as Map<String, dynamic>),
-      json['meta'] == null
-          ? null
-          : Meta.fromJson(json['meta'] as Map<String, dynamic>));
+    (json['blockStorages'] as List<dynamic>?)
+            ?.map((e) => BlockStorage.fromJson(e as Map<String, dynamic>))
+            .toList() ??
+        [],
+    Links.fromJson(json['links'] as Map<String, dynamic>),
+    Meta.fromJson(json['meta'] as Map<String, dynamic>),
+  );
 }
 
 Map<String, dynamic> _$BlockStoragesToJson(BlockStorages instance) =>
     <String, dynamic>{
-      'links': instance.links,
-      'meta': instance.meta,
-      'blockStorages': instance.blockStorages
+      'links': instance.links?.toJson(),
+      'meta': instance.meta?.toJson(),
+      'blockStorages': instance.blockStorages.map((e) => e.toJson()).toList(),
     };

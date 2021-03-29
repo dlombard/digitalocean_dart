@@ -47,8 +47,8 @@ class ProjectResourceService extends DOService {
 
   /// Assigns Default Project Resources
   Future<ProjectResources> assignDefaultProjectResources(
-      [ListOptions op]) async {
-    var path = Utils.getPathFromListOptions(op, basePath);
+      [ListOptions? ops]) async {
+    var path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic data = await client.execute('GET', path);
     var _ = _toList(data['ProjectResources']);

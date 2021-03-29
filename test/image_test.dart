@@ -7,25 +7,20 @@ import 'dart:io' show Platform;
 //import '../lib/do_dart.dart';
 
 void main() {
-  Map<String, String> envVars;
-  Client client;
-
-  setUpAll(() async {
-    envVars = Platform.environment;
-    client = Client(envVars['DO_KEY']);
-  });
+  Map<String, String> envVars = Platform.environment;
+  Client client = Client(envVars['DO_KEY']!);
 
   tearDownAll(() async {});
 
   group('Images', () {
     test('List', () async {
       Images _ = await client.image.list();
-      print(_.links.toJson());
+
       expect(_, isNotNull);
     });
     test('ListDistribution', () async {
       Images _ = await client.image.listDistributionImages();
-      print(_.links.pages.toJson());
+      print(_.links!.pages!.toJson());
       expect(_, isNotNull);
     });
     test('ListApplication', () async {

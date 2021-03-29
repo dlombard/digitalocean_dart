@@ -6,9 +6,9 @@ import 'pages.dart';
 /// the star denotes the source file name.
 part 'links.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Links {
-  Pages pages;
+  Pages? pages = null;
 
   Links(this.pages);
 

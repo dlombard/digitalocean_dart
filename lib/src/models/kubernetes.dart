@@ -34,9 +34,11 @@ class Kubernetes {
   String service_subnet;
 
   /// An array of tags applied to the Kubernetes cluster. All clusters are automatically tagged "k8s" and "k8s:$K8S_CLUSTER_ID."
+  @JsonKey(defaultValue: [])
   List<String> tags;
 
   /// An object specifying the details of the worker nodes available to the Kubernetes cluster.
+  @JsonKey(defaultValue: [])
   List<dynamic> node_pools;
 
   /// A time value given in ISO8601 combined date and time format that represents when the Kubernetes cluster was created.

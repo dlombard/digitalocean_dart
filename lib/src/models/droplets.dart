@@ -11,11 +11,11 @@ part 'droplets.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Droplets extends IdoCollection {
   List<Droplet> droplets;
 
-  Droplets(this.droplets, Links links, Meta meta) : super(links, meta);
+  Droplets(this.droplets, Links? links, Meta? meta) : super(links, meta);
 
   factory Droplets.fromJson(Map<String, dynamic> json) =>
       _$DropletsFromJson(json);

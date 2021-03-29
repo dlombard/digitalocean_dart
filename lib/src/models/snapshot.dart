@@ -19,6 +19,7 @@ class Snapshot {
   String created_at;
 
   /// An array of the regions that the image is available in. The regions are represented by their identifying slug values.
+  @JsonKey(defaultValue: [])
   List<String> regions = [];
 
   /// A unique identifier for the resource that the action is associated with.

@@ -8,19 +8,20 @@ part of 'kubernetes.dart';
 
 Kubernetes _$KubernetesFromJson(Map<String, dynamic> json) {
   return Kubernetes(
-      json['id'] as String,
-      json['name'] as String,
-      json['endpoint'] as String,
-      json['region'] as String,
-      json['version'] as String,
-      json['ipv4'] as String,
-      json['cluster_subnet'] as String,
-      json['service_subnet'] as String,
-      (json['tags'] as List)?.map((e) => e as String)?.toList(),
-      json['node_pools'] as List,
-      json['created_at'] as String,
-      json['updated_at'] as String,
-      json['status']);
+    json['id'] as String,
+    json['name'] as String,
+    json['endpoint'] as String,
+    json['region'] as String,
+    json['version'] as String,
+    json['ipv4'] as String,
+    json['cluster_subnet'] as String,
+    json['service_subnet'] as String,
+    (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+    json['node_pools'] as List<dynamic>? ?? [],
+    json['created_at'] as String,
+    json['updated_at'] as String,
+    json['status'],
+  );
 }
 
 Map<String, dynamic> _$KubernetesToJson(Kubernetes instance) =>
@@ -37,5 +38,5 @@ Map<String, dynamic> _$KubernetesToJson(Kubernetes instance) =>
       'node_pools': instance.node_pools,
       'created_at': instance.created_at,
       'updated_at': instance.updated_at,
-      'status': instance.status
+      'status': instance.status,
     };

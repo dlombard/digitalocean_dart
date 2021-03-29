@@ -10,10 +10,10 @@ class DomainService extends DOService {
   DomainService(Client client) : super(client, '/v2/domains');
 
   /// List all Domains
-  Future<Domains> list({ListOptions ops}) async {
+  Future<Domains> list({ListOptions? ops}) async {
     var path = basePath;
 
-    if (ops != null) path = Utils.getPathFromListOptions(ops, basePath);
+    if (ops != null) path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic r = await client.execute('GET', path);
 
@@ -25,7 +25,7 @@ class DomainService extends DOService {
 
   /// Create a new Domain
   ///
-  Future<Domain> create(String name, {String ip_address}) async {
+  Future<Domain> create(String name, {String? ip_address}) async {
     var json = {'name': name};
     if (ip_address != null) json['ip_address'] = ip_address;
     dynamic data = await client.execute('POST', basePath, json: json);

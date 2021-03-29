@@ -11,8 +11,9 @@ part 'certificates.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Certificates extends IdoCollection {
+  @JsonKey(defaultValue: [])
   List<Certificate> certificates;
 
   Certificates(this.certificates, Links links, Meta meta) : super(links, meta);

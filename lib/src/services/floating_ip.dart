@@ -8,8 +8,8 @@ import '../utils.dart';
 class FloatingIPService extends DOService {
   FloatingIPService(Client client) : super(client, '/v2/floating_ips');
 
-  Future<FloatingIPs> list([ListOptions ops]) async {
-    var path = Utils.getPathFromListOptions(ops, basePath);
+  Future<FloatingIPs> list([ListOptions? ops]) async {
+    var path = Utils.getPathFromListOptions(basePath, ops);
     dynamic r = await client.execute('GET', path);
 
     var es = _toList(r['floating_ips']);

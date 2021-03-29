@@ -8,7 +8,7 @@ part 'load_balancer.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class LoadBalancer {
   /// A unique ID that can be used to identify and reference a Load Balancer.
   String id;
@@ -44,6 +44,7 @@ class LoadBalancer {
   String tag;
 
   /// An array containing the IDs of the Droplets assigned to the Load Balancer.
+  @JsonKey(defaultValue: [])
   List<int> droplet_ids;
 
   /// A boolean value indicating whether HTTP requests to the Load Balancer on port 80 will be redirected to HTTPS on port 443.

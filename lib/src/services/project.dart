@@ -11,7 +11,7 @@ class ProjectService extends DOService {
   /// Create a project
   /// [purpose]: The purpose of the project. The maximum length is 255 characters. For examples of valid purposes, see the 'Purpose' class or pass a random string
   Future<Project> create(String name, String purpose,
-      [String description, Environment environment]) async {
+      [String? description, Environment? environment]) async {
     var json = <String, dynamic>{'name': name, 'purpose': purpose};
     if (description != null) json['description'] = description;
     if (environment != null) json['environment'] = environment.toString();
@@ -22,8 +22,8 @@ class ProjectService extends DOService {
   }
 
   /// Lists all Projects
-  Future<Projects> list([ListOptions ops]) async {
-    var path = Utils.getPathFromListOptions(ops, basePath);
+  Future<Projects> list([ListOptions? ops]) async {
+    var path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic data = await client.execute('GET', path);
     var collectionData = client.getDOCollectionData(data);
@@ -35,7 +35,7 @@ class ProjectService extends DOService {
   /// Updates a project
   Future<Project> update(String projectId, String name, String description,
       String purpose, bool is_default,
-      [Environment e]) async {
+      [Environment? e]) async {
     var path = '$basePath/$projectId';
     var json = <String, dynamic>{
       'name': name,
@@ -53,7 +53,7 @@ class ProjectService extends DOService {
   /// Patches a project
   Future<Project> patch(String projectId, String name, String description,
       String purpose, bool is_default,
-      [Environment e]) async {
+      [Environment? e]) async {
     var path = '$basePath/$projectId';
     var json = <String, dynamic>{
       'name': name,
@@ -89,7 +89,7 @@ class ProjectService extends DOService {
   /// Updates the default project
   Future<Project> updateDefault(
       String name, String description, String purpose, bool is_default,
-      [Environment e]) async {
+      [Environment? e]) async {
     var path = '$basePath/default';
     var json = {
       'name': name,
@@ -107,7 +107,7 @@ class ProjectService extends DOService {
   /// Patches the default project
   Future<Project> patchDefault(
       String name, String description, String purpose, bool is_default,
-      [Environment e]) async {
+      [Environment? e]) async {
     var path = '$basePath/default';
     var json = <String, dynamic>{
       'name': name,

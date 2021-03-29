@@ -8,20 +8,16 @@ part of 'ssh_keys.dart';
 
 SSHKeys _$SSHKeysFromJson(Map<String, dynamic> json) {
   return SSHKeys(
-      (json['sshKeys'] as List)
-          ?.map((e) =>
-              e == null ? null : SSHKey.fromJson(e as Map<String, dynamic>))
-          ?.toList(),
-      json['links'] == null
-          ? null
-          : Links.fromJson(json['links'] as Map<String, dynamic>),
-      json['meta'] == null
-          ? null
-          : Meta.fromJson(json['meta'] as Map<String, dynamic>));
+    (json['sshKeys'] as List<dynamic>)
+        .map((e) => SSHKey.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    Links.fromJson(json['links'] as Map<String, dynamic>),
+    Meta.fromJson(json['meta'] as Map<String, dynamic>),
+  );
 }
 
 Map<String, dynamic> _$SSHKeysToJson(SSHKeys instance) => <String, dynamic>{
-      'links': instance.links,
-      'meta': instance.meta,
-      'sshKeys': instance.sshKeys
+      'links': instance.links?.toJson(),
+      'meta': instance.meta?.toJson(),
+      'sshKeys': instance.sshKeys.map((e) => e.toJson()).toList(),
     };

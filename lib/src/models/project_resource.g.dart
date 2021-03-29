@@ -7,8 +7,12 @@ part of 'project_resource.dart';
 // **************************************************************************
 
 ProjectResource _$ProjectResourceFromJson(Map<String, dynamic> json) {
-  return ProjectResource(json['urn'] as String, json['assigned_at'] as String,
-      json['links'] as String, json['status'] as String);
+  return ProjectResource(
+    json['urn'] as String,
+    json['assigned_at'] as String,
+    json['links'] as String,
+    json['status'] as String,
+  );
 }
 
 Map<String, dynamic> _$ProjectResourceToJson(ProjectResource instance) =>
@@ -16,5 +20,5 @@ Map<String, dynamic> _$ProjectResourceToJson(ProjectResource instance) =>
       'urn': instance.urn,
       'assigned_at': instance.assigned_at,
       'links': instance.links,
-      'status': instance.status
+      'status': instance.status,
     };

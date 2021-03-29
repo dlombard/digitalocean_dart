@@ -9,15 +9,16 @@ part of 'domain_record.dart';
 DomainRecordCreateRequest _$DomainRecordCreateRequestFromJson(
     Map<String, dynamic> json) {
   return DomainRecordCreateRequest(
-      json['type'] as String,
-      json['name'] as String,
-      json['data'] as String,
-      json['priority'] as int,
-      json['port'] as int,
-      json['ttl'] as int,
-      json['weight'] as int,
-      json['flags'] as int,
-      json['tag'] as String);
+    json['type'] as String,
+    json['name'] as String,
+    json['data'] as String,
+    json['priority'] as int,
+    json['port'] as int,
+    json['ttl'] as int,
+    json['weight'] as int,
+    json['flags'] as int,
+    json['tag'] as String,
+  );
 }
 
 Map<String, dynamic> _$DomainRecordCreateRequestToJson(
@@ -31,21 +32,22 @@ Map<String, dynamic> _$DomainRecordCreateRequestToJson(
       'ttl': instance.ttl,
       'weight': instance.weight,
       'flags': instance.flags,
-      'tag': instance.tag
+      'tag': instance.tag,
     };
 
 DomainRecordUpdateRequest _$DomainRecordUpdateRequestFromJson(
     Map<String, dynamic> json) {
   return DomainRecordUpdateRequest(
-      type: json['type'] as String,
-      name: json['name'] as String,
-      data: json['data'] as String,
-      priority: json['priority'] as int,
-      port: json['port'] as int,
-      ttl: json['ttl'] as int,
-      weight: json['weight'] as int,
-      flags: json['flags'] as int,
-      tag: json['tag'] as String);
+    type: json['type'] as String?,
+    name: json['name'] as String?,
+    data: json['data'] as String?,
+    priority: json['priority'] as int?,
+    port: json['port'] as int?,
+    ttl: json['ttl'] as int?,
+    weight: json['weight'] as int?,
+    flags: json['flags'] as int?,
+    tag: json['tag'] as String?,
+  );
 }
 
 Map<String, dynamic> _$DomainRecordUpdateRequestToJson(
@@ -59,5 +61,5 @@ Map<String, dynamic> _$DomainRecordUpdateRequestToJson(
       'ttl': instance.ttl,
       'weight': instance.weight,
       'flags': instance.flags,
-      'tag': instance.tag
+      'tag': instance.tag,
     };

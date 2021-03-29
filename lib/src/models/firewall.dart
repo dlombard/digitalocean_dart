@@ -19,21 +19,26 @@ class Firewall {
   String created_at;
 
   /// An array of objects each containing the fields "droplet_id", "removing", and "status". It is provided to detail exactly which Droplets are having their security policies updated. When empty, all changes have been successfully applied.
+  @JsonKey(defaultValue: [])
   List<dynamic> pending_changes = [];
 
   /// A human-readable name for a Firewall.
   String name;
 
   /// An object specifying the inbound access rules for a Firewall
+  @JsonKey(defaultValue: [])
   List<dynamic> inbound_rules = [];
 
   /// An object specifying the outbound access rules for a Firewall
+  @JsonKey(defaultValue: [])
   List<dynamic> outbound_rules = [];
 
   /// An array containing the IDs of the Droplets assigned to the Firewall.
+  @JsonKey(defaultValue: [])
   List<int> droplet_ids = [];
 
   /// An array containing the names of the Tags assigned to the Firewall.
+  @JsonKey(defaultValue: [])
   List<String> tags;
 
   Firewall(

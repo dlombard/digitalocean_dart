@@ -8,9 +8,9 @@ import '../utils.dart';
 class FloatingIPActionService extends DOService {
   FloatingIPActionService(Client client) : super(client, '/v2/floating_ips');
 
-  Future<Actions> list(String floatingIpAddr, [ListOptions ops]) async {
+  Future<Actions> list(String floatingIpAddr, [ListOptions? ops]) async {
     var path = '$basePath/$floatingIpAddr/actions';
-    path = Utils.getPathFromListOptions(ops, path);
+    path = Utils.getPathFromListOptions(path, ops);
     dynamic r = await client.execute('GET', path);
 
     var _ = _toList(r['actions']);

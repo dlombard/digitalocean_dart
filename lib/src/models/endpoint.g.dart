@@ -8,11 +8,12 @@ part of 'endpoint.dart';
 
 Endpoint _$EndpointFromJson(Map<String, dynamic> json) {
   return Endpoint(
-      json['id'] as String,
-      json['origin'] as String,
-      json['endpoint'] as String,
-      json['created_at'] as String,
-      json['ttl'] as int);
+    json['id'] as String,
+    json['origin'] as String,
+    json['endpoint'] as String,
+    json['created_at'] as String,
+    json['ttl'] as int,
+  );
 }
 
 Map<String, dynamic> _$EndpointToJson(Endpoint instance) => <String, dynamic>{
@@ -20,5 +21,5 @@ Map<String, dynamic> _$EndpointToJson(Endpoint instance) => <String, dynamic>{
       'origin': instance.origin,
       'endpoint': instance.endpoint,
       'created_at': instance.created_at,
-      'ttl': instance.ttl
+      'ttl': instance.ttl,
     };

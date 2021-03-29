@@ -114,8 +114,8 @@ class FirewallCreateRequest {
   String name;
   List<InboundRule> inbound_rules;
   List<OutboundRule> outbound_rules;
-  List<int> dropletIds;
-  List<String> tags;
+  List<int>? dropletIds;
+  List<String>? tags;
 
   FirewallCreateRequest(this.name, this.inbound_rules, this.outbound_rules,
       [this.dropletIds, this.tags]);
@@ -130,8 +130,8 @@ class FirewallUpdateRequest {
   String name;
   List<InboundRule> inbound_rules;
   List<OutboundRule> outbound_rules;
-  List<int> dropletIds;
-  List<String> tags;
+  List<int>? dropletIds;
+  List<String>? tags;
 
   FirewallUpdateRequest(this.name, this.inbound_rules, this.outbound_rules,
       [this.dropletIds, this.tags]);

@@ -8,15 +8,16 @@ part of 'backup.dart';
 
 Backup _$BackupFromJson(Map<String, dynamic> json) {
   return Backup(
-      json['id'] as int,
-      json['name'] as String,
-      json['type'] as String,
-      json['distribution'] as String,
-      json['public'] as bool,
-      (json['regions'] as List)?.map((e) => e as String)?.toList(),
-      json['min_disk_size'] as int,
-      json['created_at'] as String,
-      slug: json['slug'] as String);
+    json['id'] as int,
+    json['name'] as String,
+    json['type'] as String,
+    json['distribution'] as String,
+    json['public'] as bool,
+    (json['regions'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+    json['min_disk_size'] as int,
+    json['created_at'] as String,
+    slug: json['slug'] as String?,
+  );
 }
 
 Map<String, dynamic> _$BackupToJson(Backup instance) => <String, dynamic>{
@@ -28,5 +29,5 @@ Map<String, dynamic> _$BackupToJson(Backup instance) => <String, dynamic>{
       'public': instance.public,
       'regions': instance.regions,
       'min_disk_size': instance.min_disk_size,
-      'created_at': instance.created_at
+      'created_at': instance.created_at,
     };

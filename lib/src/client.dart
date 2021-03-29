@@ -29,36 +29,36 @@ import './models/pages.dart';
 import 'exceptions/digital_ocean_exception.dart';
 
 class Client {
-  final String libraryVersion = '0.1.6';
+  final String libraryVersion = '2.0.0-dev.0';
   final String defaultBaseURL = 'https://api.digitalocean.com/';
   final String mediaType = 'application/json';
   final String headerRateLimit = 'RateLimit-Limit';
   final String headerRateRemaining = 'RateLimit-Remaining';
   final String headerRateReset = 'RateLimit-Reset';
   final String _api_token;
-  AccountService account;
-  ActionService action;
-  BlockStorageService blockStorage;
-  BlockStorageActionService blockStorageAction;
-  CertificateService certificate;
-  DomainService domain;
-  DomainRecordService domainRecord;
-  DropletService droplet;
-  DropletActionService dropletAction;
-  EndpointService endpoint;
-  FirewallService firewall;
-  FloatingIPService floatingIp;
-  FloatingIPActionService floatingIpAction;
-  ImageService image;
-  ImageActionService imageAction;
-  ProjectResourceService projectResource;
-  ProjectService project;
-  RegionService region;
-  SizeService size;
-  SnapshotService snapshot;
-  SSHKeyService ssh;
-  HttpClient _client;
-  String userAgent;
+  late AccountService account;
+  late ActionService action;
+  late BlockStorageService blockStorage;
+  late BlockStorageActionService blockStorageAction;
+  late CertificateService certificate;
+  late DomainService domain;
+  late DomainRecordService domainRecord;
+  late DropletService droplet;
+  late DropletActionService dropletAction;
+  late EndpointService endpoint;
+  late FirewallService firewall;
+  late FloatingIPService floatingIp;
+  late FloatingIPActionService floatingIpAction;
+  late ImageService image;
+  late ImageActionService imageAction;
+  late ProjectResourceService projectResource;
+  late ProjectService project;
+  late RegionService region;
+  late SizeService size;
+  late SnapshotService snapshot;
+  late SSHKeyService ssh;
+  late HttpClient _client;
+  late String userAgent;
 
   Client(this._api_token) {
     userAgent = 'dodart/' + libraryVersion;
@@ -90,8 +90,7 @@ class Client {
     _client = HttpClient();
   }
 
-  Future<dynamic> execute(String method, String path,
-      {Map<String, dynamic> json}) async {
+  Future<dynamic> execute(String method, String path, {dynamic json}) async {
     try {
       var params = path.split('?');
       var uri;
@@ -110,35 +109,30 @@ class Client {
           return executeRequest(
             await _client.deleteUrl(uri),
           );
-          break;
         case 'GET':
           if (json != null) {
-            return executeRequest(await _client.getUrl(uri), json: json);
+            return executeRequest(await _client.getUrl(uri), body: json);
           } else {
             return executeRequest(await _client.getUrl(uri));
           }
-          break;
         case 'PATCH':
           if (json != null) {
-            return executeRequest(await _client.patchUrl(uri), json: json);
+            return executeRequest(await _client.patchUrl(uri), body: json);
           } else {
             return executeRequest(await _client.patchUrl(uri));
           }
-          break;
         case 'POST':
           if (json != null) {
-            return executeRequest(await _client.postUrl(uri), json: json);
+            return executeRequest(await _client.postUrl(uri), body: json);
           } else {
             return executeRequest(await _client.postUrl(uri));
           }
-          break;
         case 'PUT':
           if (json != null) {
-            return executeRequest(await _client.putUrl(uri), json: json);
+            return executeRequest(await _client.putUrl(uri), body: json);
           } else {
             return executeRequest(await _client.putUrl(uri));
           }
-          break;
         default:
           break;
       }
@@ -154,13 +148,13 @@ class Client {
   }
 
   Future<dynamic> executeRequest(HttpClientRequest request,
-      {Map<String, dynamic> json}) async {
+      {dynamic body}) async {
     request.headers.contentType =
         ContentType('application', 'json', charset: 'utf-8');
     request.headers.add('Authorization', 'Bearer ' + _api_token);
     request.headers.add('User-Agent', userAgent);
 
-    if (json != null) request.write(jsonEncode(json));
+    if (body != null) request.write(jsonEncode(body));
 
     var response = await request.close();
     var completer = Completer<String>();
@@ -172,16 +166,18 @@ class Client {
         onDone: sink.close,
         cancelOnError: true);
 
-    var body = await completer.future;
+    var resp = await completer.future;
 
     if (response.statusCode >= 400) {
-      throw DigitalOceanException(body, response.statusCode,
+      throw DigitalOceanException(resp, response.statusCode,
           uri: request.uri.toString());
     }
-    if (body.isNotEmpty) {
-      return jsonDecode(body);
+    if (resp.isNotEmpty) {
+      var r = jsonDecode(resp);
+
+      return r;
     } else {
-      return body;
+      return resp;
     }
   }
 
@@ -207,6 +203,6 @@ class Client {
     if (responseData['meta'] != null) {
       return Meta.fromJson(responseData['meta']);
     }
-    return Meta(null);
+    return Meta(0);
   }
 }

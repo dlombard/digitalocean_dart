@@ -18,10 +18,10 @@ class BlockStorageService extends DOService {
   BlockStorageService(Client client) : super(client, '/v2/volumes');
 
   /// List all Block Storage volumes
-  Future<BlockStorages> list({ListOptions listOptions}) async {
+  Future<BlockStorages> list({ListOptions? listOptions}) async {
     var path = basePath;
     if (listOptions != null) {
-      path = Utils.getPathFromListOptions(listOptions, path);
+      path = Utils.getPathFromListOptions(path, listOptions);
     }
     dynamic r = await client.execute('GET', path);
     var bs = _toList(r[_FIELD_NAME + 's']);
@@ -90,12 +90,12 @@ class BlockStorageService extends DOService {
 class BlockStorageCreateRequest {
   int size_gigabytes;
   String name;
-  String description;
+  String? description;
   String region;
-  String snapshot_id;
-  String filesystem_type;
-  String filesystem_label;
-  List<String> tags;
+  String? snapshot_id;
+  String? filesystem_type;
+  String? filesystem_label;
+  List<String>? tags;
 
   BlockStorageCreateRequest(this.size_gigabytes, this.name, this.region,
       {this.description,

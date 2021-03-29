@@ -16,6 +16,7 @@ class Region {
   String name;
 
   /// This attribute is set to an array which contains the identifying slugs for the sizes available in this region.
+  @JsonKey(defaultValue: [])
   List<String> sizes = [];
 
   /// This is a boolean value that represents whether new Droplets can be created in this region.

@@ -34,6 +34,7 @@ class Size {
   int disk;
 
   /// An array containing the region slugs where this size is available for Droplet creates.
+  @JsonKey(defaultValue: [])
   List<String> regions = [];
 
   Size(this.slug, this.available, this.transfer, this.price_monthly,

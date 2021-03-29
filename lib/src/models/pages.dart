@@ -7,10 +7,10 @@ part 'pages.g.dart';
 
 @JsonSerializable()
 class Pages {
-  String first;
-  String last;
-  String next;
-  String prev;
+  String? first;
+  String? last;
+  String? next;
+  String? prev;
 
   Pages({this.first, this.last, this.next, this.prev});
   factory Pages.fromJson(Map<String, dynamic> json) => _$PagesFromJson(json);

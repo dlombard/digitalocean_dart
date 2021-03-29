@@ -8,7 +8,8 @@ class BlockStorageActionService extends DOService {
   BlockStorageActionService(Client client) : super(client, '/v2/volumes');
 
   /// Attach a Block Storage volume to a Droplet
-  Future<Action> attach(String volumeId, int dropletId, {String region}) async {
+  Future<Action> attach(String volumeId, int dropletId,
+      {String? region}) async {
     var type = 'attach';
 
     var requestObj = {
@@ -21,7 +22,7 @@ class BlockStorageActionService extends DOService {
   }
 
   /// Remove a Block Storage volume from a Droplet
-  Future<Action> detach(String volumeId, int dropletId, {String region}) {
+  Future<Action> detach(String volumeId, int dropletId, {String? region}) {
     var type = 'detach';
     var requestObj = {
       'type': type,
@@ -33,7 +34,7 @@ class BlockStorageActionService extends DOService {
   }
 
   /// Resize a volume
-  Future<Action> resize(String volumeId, int sizeGigabytes, {String region}) {
+  Future<Action> resize(String volumeId, int sizeGigabytes, {String? region}) {
     var type = 'resize';
     var requestObj = {
       'type': type,
@@ -48,7 +49,11 @@ class BlockStorageActionService extends DOService {
     var path = basePath + '/' + volumeId + '/actions';
     dynamic data = await client.execute('GET', path);
 
-    var actions = _toList(data['actions']);
+    List<Action> actions = [];
+
+    if (data['actions'] != null) {
+      actions = _toList(data['actions']);
+    }
     var collectionData = client.getDOCollectionData(data);
 
     return Actions(actions, collectionData['links'], collectionData['meta']);

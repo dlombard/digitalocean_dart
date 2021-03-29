@@ -27,10 +27,10 @@ class CertificateService extends DOService {
   }
 
   /// List all certificates
-  Future<Certificates> list({ListOptions ops}) async {
+  Future<Certificates> list({ListOptions? ops}) async {
     var path = basePath;
 
-    if (ops != null) path = Utils.getPathFromListOptions(ops, basePath);
+    if (ops != null) path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic r = await client.execute('GET', path);
 
@@ -58,10 +58,10 @@ class CertificateService extends DOService {
 @JsonSerializable()
 class CertificateCreateRequest {
   String name;
-  String private_key;
-  String leaf_certificate;
-  String certificate_chain;
-  List<String> dns_names;
+  String? private_key;
+  String? leaf_certificate;
+  String? certificate_chain;
+  List<String>? dns_names;
   String type;
 
   CertificateCreateRequest(this.name, this.type,

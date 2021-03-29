@@ -11,7 +11,7 @@ part 'firewalls.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Firewalls extends IdoCollection {
   List<Firewall> firewalls;
 

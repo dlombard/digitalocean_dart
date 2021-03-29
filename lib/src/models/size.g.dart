@@ -8,15 +8,16 @@ part of 'size.dart';
 
 Size _$SizeFromJson(Map<String, dynamic> json) {
   return Size(
-      json['slug'] as String,
-      json['available'] as bool,
-      (json['transfer'] as num)?.toDouble(),
-      (json['price_monthly'] as num)?.toDouble(),
-      (json['price_hourly'] as num)?.toDouble(),
-      json['memory'] as int,
-      json['vcpus'] as int,
-      json['disk'] as int,
-      (json['regions'] as List)?.map((e) => e as String)?.toList());
+    json['slug'] as String,
+    json['available'] as bool,
+    (json['transfer'] as num).toDouble(),
+    (json['price_monthly'] as num).toDouble(),
+    (json['price_hourly'] as num).toDouble(),
+    json['memory'] as int,
+    json['vcpus'] as int,
+    json['disk'] as int,
+    (json['regions'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  );
 }
 
 Map<String, dynamic> _$SizeToJson(Size instance) => <String, dynamic>{
@@ -28,5 +29,5 @@ Map<String, dynamic> _$SizeToJson(Size instance) => <String, dynamic>{
       'memory': instance.memory,
       'vcpus': instance.vcpus,
       'disk': instance.disk,
-      'regions': instance.regions
+      'regions': instance.regions,
     };

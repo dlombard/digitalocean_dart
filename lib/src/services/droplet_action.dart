@@ -68,11 +68,12 @@ class DropletActionService extends DOService {
     return execute(path, {'type': type});
   }
 
-  Future<Action> resize(int dropletId, String size, [bool increaseDiskSize]) {
+  Future<Action> resize(int dropletId, String size,
+      [bool increaseDiskSize = false]) {
     var type = 'resize';
     var path = '$basePath/$dropletId/actions';
     var json = <String, dynamic>{'type': type, 'size': size};
-    if (increaseDiskSize != null) json['disk'] = increaseDiskSize;
+    json['disk'] = increaseDiskSize;
     return execute(path, json);
   }
 
@@ -104,6 +105,7 @@ class DropletActionService extends DOService {
     return execute(path, {'type': type});
   }
 
+  @deprecated
   Future<Action> enablePrivateNetworking(int dropletId) {
     var type = 'enable_private_networking';
     var path = '$basePath/$dropletId/actions';

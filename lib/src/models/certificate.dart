@@ -25,6 +25,7 @@ class Certificate {
   String created_at;
 
   /// An array of fully qualified domain names (FQDNs) for which the certificate was issued.
+  @JsonKey(defaultValue: [])
   List<String> dns_names = [];
 
   /// A string representing the current state of the certificate. It may be "pending", "verified", or "error".

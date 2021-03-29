@@ -42,22 +42,22 @@ class DropletService extends DOService {
   }
 
   /// Lists All Droplets
-  Future<Droplets> list([ListOptions op]) async {
-    var path = Utils.getPathFromListOptions(op, basePath);
+  Future<Droplets> list([ListOptions? op]) async {
+    var path = Utils.getPathFromListOptions(basePath, op);
     return _getList(path);
   }
 
   /// Lists Droplets by Tag
-  Future<Droplets> listByTag(String tagName, [ListOptions op]) async {
+  Future<Droplets> listByTag(String tagName, [ListOptions? op]) async {
     var path = '$basePath?tag_name=$tagName';
-    path = Utils.getPathFromListOptions(op, path);
+    path = Utils.getPathFromListOptions(path, op);
     return _getList(path);
   }
 
   /// Lists all available Kernels for a Droplet
-  Future<Kernels> kernels(int dropletId, [ListOptions op]) async {
+  Future<Kernels> kernels(int dropletId, [ListOptions? op]) async {
     var path = '$basePath/$dropletId/kernels';
-    path = Utils.getPathFromListOptions(op, path);
+    path = Utils.getPathFromListOptions(path, op);
     dynamic data = await client.execute('GET', path);
 
     var kernels = <Kernel>[];
@@ -70,9 +70,9 @@ class DropletService extends DOService {
   }
 
   /// Lists snapshots for a Droplet
-  Future<Snapshots> snapshots(int dropletId, [ListOptions op]) async {
+  Future<Snapshots> snapshots(int dropletId, [ListOptions? op]) async {
     var path = '$basePath/$dropletId/snapshots';
-    path = Utils.getPathFromListOptions(op, path);
+    path = Utils.getPathFromListOptions(path, op);
     dynamic data = await client.execute('GET', path);
 
     var _ = <Snapshot>[];
@@ -85,9 +85,9 @@ class DropletService extends DOService {
   }
 
   /// Lists backups for a Droplet
-  Future<Backups> backups(int dropletId, [ListOptions op]) async {
+  Future<Backups> backups(int dropletId, [ListOptions? op]) async {
     var path = '$basePath/$dropletId/backups';
-    path = Utils.getPathFromListOptions(op, path);
+    path = Utils.getPathFromListOptions(path, op);
     dynamic data = await client.execute('GET', path);
 
     var _ = <Backup>[];
@@ -100,9 +100,9 @@ class DropletService extends DOService {
   }
 
   /// Lists actions for a Droplet
-  Future<Actions> actions(int dropletId, [ListOptions op]) async {
+  Future<Actions> actions(int dropletId, [ListOptions? op]) async {
     var path = '$basePath/$dropletId/actions';
-    path = Utils.getPathFromListOptions(op, path);
+    path = Utils.getPathFromListOptions(path, op);
     dynamic data = await client.execute('GET', path);
 
     var _ = <Action>[];
@@ -169,14 +169,14 @@ class DropletCreateRequest {
   String region;
   String size;
   int image;
-  List<int> ssh_keys;
-  bool backups;
-  bool ipv6;
-  bool private_networking;
-  String user_data;
-  bool monitoring;
-  List<String> volumes;
-  List<String> tags;
+  List<int>? ssh_keys;
+  bool? backups;
+  bool? ipv6;
+  bool? private_networking;
+  String? user_data;
+  bool? monitoring;
+  List<String>? volumes;
+  List<String>? tags;
 
   DropletCreateRequest(this.name, this.region, this.size, this.image,
       {this.ssh_keys,
@@ -199,14 +199,14 @@ class DropletCreateManyRequest {
   String region;
   String size;
   int image;
-  List<int> ssh_keys;
-  bool backups;
-  bool ipv6;
-  bool private_networking;
-  String user_data;
-  bool monitoring;
-  List<String> volumes;
-  List<String> tags;
+  List<int>? ssh_keys;
+  bool? backups;
+  bool? ipv6;
+  bool? private_networking;
+  String? user_data;
+  bool? monitoring;
+  List<String>? volumes;
+  List<String>? tags;
 
   DropletCreateManyRequest(this.names, this.region, this.size, this.image,
       {this.ssh_keys,

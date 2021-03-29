@@ -8,20 +8,16 @@ part of 'endpoints.dart';
 
 Endpoints _$EndpointsFromJson(Map<String, dynamic> json) {
   return Endpoints(
-      (json['endpoints'] as List)
-          ?.map((e) =>
-              e == null ? null : Endpoint.fromJson(e as Map<String, dynamic>))
-          ?.toList(),
-      json['links'] == null
-          ? null
-          : Links.fromJson(json['links'] as Map<String, dynamic>),
-      json['meta'] == null
-          ? null
-          : Meta.fromJson(json['meta'] as Map<String, dynamic>));
+    (json['endpoints'] as List<dynamic>)
+        .map((e) => Endpoint.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    Links.fromJson(json['links'] as Map<String, dynamic>),
+    Meta.fromJson(json['meta'] as Map<String, dynamic>),
+  );
 }
 
 Map<String, dynamic> _$EndpointsToJson(Endpoints instance) => <String, dynamic>{
-      'links': instance.links,
-      'meta': instance.meta,
-      'endpoints': instance.endpoints
+      'links': instance.links?.toJson(),
+      'meta': instance.meta?.toJson(),
+      'endpoints': instance.endpoints.map((e) => e.toJson()).toList(),
     };

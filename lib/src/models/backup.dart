@@ -13,8 +13,9 @@ class Backup {
   String name;
   String type;
   String distribution;
-  String slug;
+  String? slug;
   bool public;
+  @JsonKey(defaultValue: [])
   List<String> regions;
   int min_disk_size;
   String created_at;

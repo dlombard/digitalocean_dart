@@ -7,7 +7,7 @@ part 'image.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Image {
   /// A unique number that can be used to identify and reference a specific image.
   int id;
@@ -22,12 +22,13 @@ class Image {
   String distribution;
 
   /// A uniquely identifying string that is associated with each of the DigitalOcean-provided public images. These can be used to reference a public image as an alternative to the numeric id.
-  String slug;
+  String? slug;
 
   /// This is a boolean value that indicates whether the image in question is public or not. An image that is public is available to all accounts. A non-public image is only accessible from your account.
   bool public;
 
   /// This attribute is an array of the regions that the image is available in. The regions are represented by their identifying slug values.
+  @JsonKey(defaultValue: [])
   List<String> regions = [];
 
   /// A time value given in ISO8601 combined date and time format that represents when the image was created.
@@ -40,16 +41,18 @@ class Image {
   double size_gigabytes;
 
   /// An optional free-form text field to describe an image.
-  String description;
+
+  String? description;
 
   /// An array containing the names of the tags the image has been tagged with.
+  @JsonKey(defaultValue: [])
   List<String> tags;
 
   /// A status string indicating the state of a custom image. This may be "NEW", "available", "pending", or "deleted".
   String status;
 
   /// A string containing information about errors that may occur when importing a custom image.
-  String error_message;
+  String? error_message;
 
   Image(
       this.id,

@@ -9,7 +9,7 @@ part 'floating_ip.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class FloatingIP {
   /// The public IP address of the Floating IP. It also serves as its identifier.
   String ip;

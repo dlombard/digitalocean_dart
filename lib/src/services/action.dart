@@ -17,8 +17,8 @@ class ActionService extends DOService {
   }
 
   /// List all Actions
-  Future<Actions> list({ListOptions listOptions}) async {
-    var path = Utils.getPathFromListOptions(listOptions, basePath);
+  Future<Actions> list({ListOptions? listOptions}) async {
+    var path = Utils.getPathFromListOptions(basePath, listOptions);
 
     dynamic r = await client.execute('GET', path);
 

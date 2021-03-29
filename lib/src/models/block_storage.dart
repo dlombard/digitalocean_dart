@@ -8,7 +8,7 @@ part 'block_storage.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class BlockStorage {
   /// The unique identifier for the Block Storage volume.
   String id;
@@ -17,13 +17,14 @@ class BlockStorage {
   Region region;
 
   /// An array containing the IDs of the Droplets the volume is attached to. Note that at this time, a volume can only be attached to a single Droplet.
-  List<int> droplet_ids = [];
+  @JsonKey(defaultValue: [])
+  List<int> droplet_ids;
 
   /// A human-readable name for the Block Storage volume. Must be lowercase and be composed only of numbers, letters and "-", up to a limit of 64 characters.
   String name;
 
   /// An optional free-form text field to describe a Block Storage volume.
-  String description;
+  String? description;
 
   /// The size of the Block Storage volume in GiB (1024^3).
   int size_gigabytes;
@@ -38,6 +39,7 @@ class BlockStorage {
   String filesystem_label;
 
   /// An array of Tags the volume has been tagged with
+  @JsonKey(defaultValue: [])
   List<String> tags = [];
 
   BlockStorage(

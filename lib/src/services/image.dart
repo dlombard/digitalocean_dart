@@ -11,8 +11,8 @@ class ImageService extends DOService {
   ImageService(Client client) : super(client, '/v2/images');
 
   /// List all Images
-  Future<Images> list([ListOptions op]) async {
-    var path = Utils.getPathFromListOptions(op, basePath);
+  Future<Images> list([ListOptions? ops]) async {
+    var path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic data = await client.execute('GET', path);
 
@@ -22,9 +22,9 @@ class ImageService extends DOService {
   }
 
   /// List all Distribution Images
-  Future<Images> listDistributionImages([ListOptions op]) async {
+  Future<Images> listDistributionImages([ListOptions? ops]) async {
     var path = '$basePath?type=distribution';
-    path = Utils.getPathFromListOptions(op, basePath);
+    path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic data = await client.execute('GET', path);
 
@@ -34,9 +34,9 @@ class ImageService extends DOService {
   }
 
   /// List all Application Images
-  Future<Images> listApplicationImages([ListOptions op]) async {
+  Future<Images> listApplicationImages([ListOptions? ops]) async {
     var path = '$basePath?type=application';
-    path = Utils.getPathFromListOptions(op, basePath);
+    path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic data = await client.execute('GET', path);
 
@@ -46,9 +46,9 @@ class ImageService extends DOService {
   }
 
   /// List all User's Images
-  Future<Images> listUsersImages([ListOptions op]) async {
+  Future<Images> listUsersImages([ListOptions? ops]) async {
     var path = '$basePath?private=true';
-    path = Utils.getPathFromListOptions(op, basePath);
+    path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic data = await client.execute('GET', path);
 
@@ -58,9 +58,9 @@ class ImageService extends DOService {
   }
 
   /// List all User's Images
-  Future<Images> listByTag(String tagName, [ListOptions op]) async {
+  Future<Images> listByTag(String tagName, [ListOptions? ops]) async {
     var path = '$basePath?tag_name=$tagName';
-    path = Utils.getPathFromListOptions(op, basePath);
+    path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic data = await client.execute('GET', path);
 
@@ -71,7 +71,7 @@ class ImageService extends DOService {
 
   /// Create a Custom Image
   Future<Image> create(String name, String url, String region,
-      [String distribution, String description, List<String> tags]) async {
+      [String? distribution, String? description, List<String>? tags]) async {
     var json = <String, dynamic>{
       'name': name,
       'url': url,
@@ -105,7 +105,7 @@ class ImageService extends DOService {
 
   /// Updates an image
   Future<Image> update(String imageId, String name,
-      [String distribution, String description]) async {
+      [String? distribution, String? description]) async {
     var path = '$basePath/$imageId';
 
     var json = {
@@ -136,9 +136,7 @@ class ImageService extends DOService {
   /// Delete an existing Image by id
   Future<void> delete(String imageId) async {
     var path = '$basePath/$imageId';
-    dynamic data = await client.execute('DELETE', path);
-
-    return Image.fromJson(data['image']);
+    await client.execute('DELETE', path);
   }
 
   List<Image> _toList(List<dynamic> data) {

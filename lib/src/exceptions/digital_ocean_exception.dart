@@ -2,10 +2,10 @@ import 'dart:convert';
 
 class DigitalOceanException implements Exception {
   String message;
-  String id;
+  String? id;
   int statusCode;
   dynamic data;
-  String uri;
+  String? uri;
 
   DigitalOceanException(this.message, this.statusCode,
       {this.id, this.data, this.uri}) {
@@ -26,9 +26,9 @@ class DigitalOceanException implements Exception {
       'message': message,
       'statusCode': statusCode.toString()
     };
-    if (id != null) errorString['id'] = id;
+    if (id != null) errorString['id'] = id!;
     if (data != null) errorString['data'] = data;
-    if (uri.isNotEmpty) errorString['uri'] = uri;
+    if (uri!.isNotEmpty) errorString['uri'] = uri!;
 
     return errorString.toString();
   }

@@ -13,10 +13,10 @@ class DomainRecordService extends DOService {
   DomainRecordService(Client client) : super(client, '/v2/domains');
 
   /// List all Domain Records
-  Future<DomainRecords> list(String name, {ListOptions ops}) async {
+  Future<DomainRecords> list(String name, {ListOptions? ops}) async {
     var path = basePath + '/' + name + '/records';
 
-    if (ops != null) path = Utils.getPathFromListOptions(ops, path);
+    if (ops != null) path = Utils.getPathFromListOptions(path, ops);
 
     dynamic r = await client.execute('GET', path);
 
@@ -94,15 +94,15 @@ class DomainRecordCreateRequest {
 
 @JsonSerializable()
 class DomainRecordUpdateRequest {
-  String type;
-  String name;
-  String data;
-  int priority;
-  int port;
-  int ttl;
-  int weight;
-  int flags;
-  String tag;
+  String? type;
+  String? name;
+  String? data;
+  int? priority;
+  int? port;
+  int? ttl;
+  int? weight;
+  int? flags;
+  String? tag;
 
   DomainRecordUpdateRequest(
       {this.type,

@@ -1,6 +1,6 @@
 class ListOptions {
   int page;
-  int perPage;
+  int? perPage;
   ListOptions(this.page, {this.perPage});
 
   @override

@@ -9,12 +9,14 @@ part of 'certificate.dart';
 CertificateCreateRequest _$CertificateCreateRequestFromJson(
     Map<String, dynamic> json) {
   return CertificateCreateRequest(
-      json['name'] as String, json['type'] as String,
-      private_key: json['private_key'] as String,
-      leaf_certificate: json['leaf_certificate'] as String,
-      certificate_chain: json['certificate_chain'] as String,
-      dns_names:
-          (json['dns_names'] as List)?.map((e) => e as String)?.toList());
+    json['name'] as String,
+    json['type'] as String,
+    private_key: json['private_key'] as String?,
+    leaf_certificate: json['leaf_certificate'] as String?,
+    certificate_chain: json['certificate_chain'] as String?,
+    dns_names:
+        (json['dns_names'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  );
 }
 
 Map<String, dynamic> _$CertificateCreateRequestToJson(
@@ -25,5 +27,5 @@ Map<String, dynamic> _$CertificateCreateRequestToJson(
       'leaf_certificate': instance.leaf_certificate,
       'certificate_chain': instance.certificate_chain,
       'dns_names': instance.dns_names,
-      'type': instance.type
+      'type': instance.type,
     };

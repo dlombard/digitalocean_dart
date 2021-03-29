@@ -8,11 +8,14 @@ part of 'domain.dart';
 
 Domain _$DomainFromJson(Map<String, dynamic> json) {
   return Domain(
-      json['name'] as String, json['ttl'] as int, json['zone_file'] as String);
+    json['name'] as String,
+    json['ttl'] as int?,
+    json['zone_file'] as String?,
+  );
 }
 
 Map<String, dynamic> _$DomainToJson(Domain instance) => <String, dynamic>{
       'name': instance.name,
       'ttl': instance.ttl,
-      'zone_file': instance.zone_file
+      'zone_file': instance.zone_file,
     };

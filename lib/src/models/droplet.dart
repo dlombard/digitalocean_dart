@@ -10,7 +10,7 @@ part 'droplet.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Droplet {
   int id;
   String name;
@@ -20,8 +20,11 @@ class Droplet {
   bool locked;
   String created_at;
   String status;
+  @JsonKey(defaultValue: [])
   List<int> backup_ids = [];
+  @JsonKey(defaultValue: [])
   List<int> snapshot_ids = [];
+  @JsonKey(defaultValue: [])
   List<String> features = [];
   Region region;
   Image image;
@@ -30,7 +33,9 @@ class Droplet {
   dynamic networks;
   dynamic kernel;
   dynamic next_backup_window;
+  @JsonKey(defaultValue: [])
   List<String> tags = [];
+  @JsonKey(defaultValue: [])
   List<String> volume_ids = [];
 
   Droplet(

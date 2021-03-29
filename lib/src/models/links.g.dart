@@ -7,10 +7,13 @@ part of 'links.dart';
 // **************************************************************************
 
 Links _$LinksFromJson(Map<String, dynamic> json) {
-  return Links(json['pages'] == null
-      ? null
-      : Pages.fromJson(json['pages'] as Map<String, dynamic>));
+  return Links(
+    json['pages'] == null
+        ? null
+        : Pages.fromJson(json['pages'] as Map<String, dynamic>),
+  );
 }
 
-Map<String, dynamic> _$LinksToJson(Links instance) =>
-    <String, dynamic>{'pages': instance.pages};
+Map<String, dynamic> _$LinksToJson(Links instance) => <String, dynamic>{
+      'pages': instance.pages?.toJson(),
+    };

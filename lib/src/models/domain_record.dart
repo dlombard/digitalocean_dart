@@ -13,10 +13,10 @@ class DomainRecord {
   String type;
   String name;
   String data;
-  int priority;
-  int port;
+  int? priority;
+  int? port;
   int ttl;
-  int weight;
+  int? weight;
   int flags;
   String tag;
 

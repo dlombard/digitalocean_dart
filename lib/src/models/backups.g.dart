@@ -8,20 +8,16 @@ part of 'backups.dart';
 
 Backups _$BackupsFromJson(Map<String, dynamic> json) {
   return Backups(
-      (json['backups'] as List)
-          ?.map((e) =>
-              e == null ? null : Backup.fromJson(e as Map<String, dynamic>))
-          ?.toList(),
-      json['links'] == null
-          ? null
-          : Links.fromJson(json['links'] as Map<String, dynamic>),
-      json['meta'] == null
-          ? null
-          : Meta.fromJson(json['meta'] as Map<String, dynamic>));
+    (json['backups'] as List<dynamic>)
+        .map((e) => Backup.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    Links.fromJson(json['links'] as Map<String, dynamic>),
+    Meta.fromJson(json['meta'] as Map<String, dynamic>),
+  );
 }
 
 Map<String, dynamic> _$BackupsToJson(Backups instance) => <String, dynamic>{
-      'links': instance.links,
-      'meta': instance.meta,
-      'backups': instance.backups
+      'links': instance.links?.toJson(),
+      'meta': instance.meta?.toJson(),
+      'backups': instance.backups.map((e) => e.toJson()).toList(),
     };

@@ -32,8 +32,8 @@ class SSHKeyService extends DOService {
   }
 
   /// List all SSHKeys
-  Future<SSHKeys> list([ListOptions op]) async {
-    var path = Utils.getPathFromListOptions(op, basePath);
+  Future<SSHKeys> list([ListOptions? ops]) async {
+    var path = Utils.getPathFromListOptions(basePath, ops);
 
     dynamic data = await client.execute('GET', path);
     var _ = _toList(data['SSHKeys']);

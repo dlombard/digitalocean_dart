@@ -8,20 +8,20 @@ part of 'image.dart';
 
 Image _$ImageFromJson(Map<String, dynamic> json) {
   return Image(
-      json['id'] as int,
-      json['name'] as String,
-      json['type'] as String,
-      json['distribution'] as String,
-      json['public'] as bool,
-      (json['regions'] as List)?.map((e) => e as String)?.toList(),
-      json['created_at'] as String,
-      json['min_disk_size'] as int,
-      (json['size_gigabytes'] as num)?.toDouble(),
-      json['description'] as String,
-      (json['tags'] as List)?.map((e) => e as String)?.toList(),
-      json['status'] as String,
-      slug: json['slug'] as String)
-    ..error_message = json['error_message'] as String;
+    json['id'] as int,
+    json['name'] as String,
+    json['type'] as String,
+    json['distribution'] as String,
+    json['public'] as bool,
+    (json['regions'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+    json['created_at'] as String,
+    json['min_disk_size'] as int,
+    (json['size_gigabytes'] as num).toDouble(),
+    json['description'] as String?,
+    (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+    json['status'] as String,
+    slug: json['slug'] as String?,
+  )..error_message = json['error_message'] as String?;
 }
 
 Map<String, dynamic> _$ImageToJson(Image instance) => <String, dynamic>{
@@ -38,5 +38,5 @@ Map<String, dynamic> _$ImageToJson(Image instance) => <String, dynamic>{
       'description': instance.description,
       'tags': instance.tags,
       'status': instance.status,
-      'error_message': instance.error_message
+      'error_message': instance.error_message,
     };
